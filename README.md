@@ -1,4 +1,4 @@
-#Alex Malotky Individual Project
+# Alex Malotky Individual Project
 # _Weekly Meal Planning App_
 
 ## Problem Statement
