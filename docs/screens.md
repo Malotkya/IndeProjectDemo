@@ -15,8 +15,8 @@
 ## Search for Recipes
 ![User Login](images/recipeSearch.PNG)
 
-##View a Recipe
+## View a Recipe
 ![User Login](images/recipeView.PNG)
 
-##Edit a Recipe
+## Edit a Recipe
 ![User Login](images/recipeEdit.PNG)
