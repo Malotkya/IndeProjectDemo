@@ -9,7 +9,7 @@ With this app you can save recipes, plan out meals, and create shopping lists fo
 ## Design
 [User Stories](docs/useStories.md)    
 [Screen Designs](docs/screens.md)  
-[Project Flow](docs/flow.md)
+[Project Flow](docs/flow.md)  
 [Project Plan](docs/plan.md)
 
 ### Technologies
