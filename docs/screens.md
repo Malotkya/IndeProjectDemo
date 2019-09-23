@@ -1,18 +1,18 @@
 # Screen Designs
 
-##User Login Screen
+## User Login Screen
 ![User Login](images/userLogIn.PNG)
 
-##User Sign Up Screen
+## User Sign Up Screen
 ![User Sign Up](images/userSignUp.PNG)
 
-##View Favorite Recipes
+## View Favorite Recipes
 ![User Login](images/userViewFavs.PNG)
 
-##View Weekly Planner
+## View Weekly Planner
 ![User Login](images/userViewWeek.PNG)
 
-##Search for Recipes
+## Search for Recipes
 ![User Login](images/recipeSearch.PNG)
 
 ##View a Recipe

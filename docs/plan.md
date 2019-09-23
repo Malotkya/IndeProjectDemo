@@ -9,7 +9,7 @@
 - [ ] End of the week Reflections
 
 ## Week 4
-- [ ] Complete screen design
+- [X] Complete screen design
 - [ ] Create database design
 - [ ] Get set up on AWS
 - [ ] Create test database
