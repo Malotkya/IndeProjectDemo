@@ -8,11 +8,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="jsp/header.jsp"%>
 
-<form action="searchUser">
-    <label for="lastName">Search by LastName: </label>
-    <input type="text"  id="lastName" name="lastName" value="${lastName}" />
-    <input type="submit" />
-</form>
 <c:choose>
     <c:when test="${empty users}">
         <h3>No Results Found!</h3>
