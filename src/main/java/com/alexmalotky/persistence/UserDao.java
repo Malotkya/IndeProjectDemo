@@ -21,4 +21,37 @@ public class UserDao{
         session.close();
         return users;
     }
+
+    public User getUserById(int id) {
+        Session session = sessionFactory.openSession();
+        User user = session.get(User.class, id);
+        session.close();
+        return user;
+    }
+
+    public int insert(User user){
+        int id;
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        id = (int)session.save(user);
+        transaction.commit();
+        session.close();
+        return id;
+    }
+
+    public void update(User user){
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(user);
+        transaction.commit();
+        session.close();
+    }
+
+    public void delete(User user){
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(user);
+        transaction.commit();
+        session.close();
+    }
 }
