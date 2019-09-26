@@ -26,7 +26,6 @@ public class Database {
     private static Database instance = new Database();
 
     private Properties properties;
-
     private Connection connection;
 
     // private constructor prevents instantiating this class anywhere else
@@ -93,20 +92,24 @@ public class Database {
 
         Statement stmt = null;
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        InputStream inputStream = classloader.getResourceAsStream(sqlFile);
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(classloader.getResourceAsStream(sqlFile))))  {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             connect();
             stmt = connection.createStatement();
 
-            while (true) {
-                String sql = br.readLine();
-                if (sql == null) {
-                    break;
-                }
-                stmt.executeUpdate(sql);
+            String sql = "";
+            while (br.ready())
+            {
+                char inputValue = (char)br.read();
 
+                if(inputValue == ';')
+                {
+                    stmt.executeUpdate(sql);
+                    sql = "";
+                }
+                else
+                    sql += inputValue;
             }
 
         } catch (SQLException se) {
