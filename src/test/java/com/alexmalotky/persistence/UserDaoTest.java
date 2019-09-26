@@ -35,13 +35,17 @@ class UserDaoTest {
 
     @Test
     void testInsert() {
+        String firstName = "Leroy";
+        String lastName = "Jenkins";
+
         User user = new User();
-        user.setFirstName("Leroy");
-        user.setLastName("Jenkins");
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
         user.setUserName("Blah Blah Blah");
 
         int id = dao.insert(user);
-        assertEquals(4, id );
+        user = dao.getUserById(id);
+        assertEquals(lastName, user.getLastName() );
     }
 
     @Test

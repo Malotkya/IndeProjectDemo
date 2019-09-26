@@ -7,3 +7,4 @@
 | 09/23 | 13:30 | 14:45 | Watching weekly videos and readings | 1.75 |
 | 09/25 | 09:30 | 11:00 | Finishing Videos and start working on exercises | 1.50 |
 | 09/25 | 12:30 | 2:30 | Setting up test for User DAO | 2.0 |
+| 09/25 | 18:00 | 19:15 | Running tests on DAO object | 1.25 |
