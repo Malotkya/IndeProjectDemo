@@ -12,6 +12,14 @@ create table recipes (
     foreign key (owner) references Users(id)
 );
 
-insert into recipes values(1, "boss sauce", "1 jar of spaghetti sauce", "poor sauce into sauce pan and bring to boil", false,2 );
+insert into recipes
+values(
+	0,
+    "Boss Sauce",
+	"{ {\"Spagheti Sauce\" , \"16 oz\" } }",
+	"{\"Poor sauce into sauce pan\", \" Bring sauce to a boil\"}",
+	false, 
+    2
+);
 
 select * from recipes;

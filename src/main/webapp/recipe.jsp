@@ -13,6 +13,7 @@
     <input type="hidden" id="ingredients" name="ingredients" value="${recipe.ingredients}"/>
     <input type="hidden" id="directions" name="directions" value="${recipe.directions}"/>
     <input type="hidden" name="id" value="${recipe.id}"/>
+    <!-- Add an element for javascript to read to remove ability to edit. -->
 
     <div id="recipeName">
         <h2>${recipe.name}</h2>
