@@ -1,7 +1,6 @@
 package com.alexmalotky.entity;
 
 import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 @Entity(name = "Recipe")
@@ -22,6 +21,30 @@ public class Recipe {
     @Column(name = "directions")
     private String directions;
 
+    @ManyToOne
+    private User user;
+
+    public Recipe() {
+        user = new User();
+    }
+
+    public Recipe(String name, String ingredients, String directions) {
+        this.name = name;
+        this.ingredients = ingredients;
+        this.directions = directions;
+    }
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", ingredients='" + ingredients + '\'' +
+                ", directions='" + directions + '\'' +
+                ", user=" + user +
+                '}';
+    }
+
     public void setId(int id) {this.id = id;};
     public int getId() {return id;};
 
@@ -33,5 +56,8 @@ public class Recipe {
 
     public void setDirections(String directions){this.directions = directions;};
     public String getDirections() {return directions;};
+
+    public void setUser(User owner){this.user = user;};
+    public User getUser(){return user;};
 
 }

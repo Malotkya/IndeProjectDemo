@@ -9,3 +9,4 @@
 | 09/25 | 12:30 | 2:30 | Setting up test for User DAO | 2.0 |
 | 09/25 | 18:00 | 19:15 | Running tests on DAO object | 1.25 |
 | 09/30 | 14:30 | 15:45 | Do reading and watch videos (Also did some work on recipe jsp page and entity) | 1.25 |
+| 10/02 | 10:00 | | Finishing videos and working on exercise | |

@@ -8,8 +8,8 @@ create table recipes (
     ingredients varchar(2000),
     directions varchar(2000),
     public bool,
-    owner int,
-    foreign key (owner) references Users(id)
+    user_id int,
+    foreign key (user_id) references Users(id)
 );
 
 insert into recipes

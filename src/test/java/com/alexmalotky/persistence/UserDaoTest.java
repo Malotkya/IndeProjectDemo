@@ -1,5 +1,6 @@
 package com.alexmalotky.persistence;
 
+import com.alexmalotky.entity.Recipe;
 import com.alexmalotky.entity.User;
 import com.alexmalotky.util.Database;
 import org.junit.jupiter.api.BeforeEach;
@@ -61,5 +62,15 @@ class UserDaoTest {
         dao.delete(user);
 
         assertEquals(null, dao.getUserById(3));
+    }
+
+    @Test
+    void insertNewRecipeTest() {
+        User newUser = new User("Alex", "Malotky", "ajmalotky", "");
+
+        Recipe newRecipe = new Recipe("TestRecipe", "", "");
+        newUser.addRecipe(newRecipe);
+
+        int id = dao.insert(newUser);
     }
 }
