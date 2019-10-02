@@ -40,6 +40,18 @@ public class User {
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", id=" + id +
+                ", email='" + email + '\'' +
+                ", recipes=" + recipes +
+                '}';
+    }
+
     public int getId() {return id;}
     public void setId(int id){this.id = id;}
 
@@ -64,7 +76,11 @@ public class User {
     }
 
     public void addRecipe(Recipe recipe) {
-        recipes.add(recipe);
         recipe.setUser(this);
+        recipes.add(recipe);
+    }
+
+    public void removeRecipe(Recipe recipe) {
+        recipes.remove(recipe);
     }
 }

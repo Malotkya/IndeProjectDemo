@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserDaoTest {
 
-    UserDao dao;
+    private UserDao dao;
 
     @BeforeEach
     void setUp() {
@@ -23,7 +23,7 @@ class UserDaoTest {
     }
 
     @Test
-    public void testGetAllUsers() {
+    void testGetAllUsers() {
         List<User> list = dao.getAllUsers();
         assertEquals(3, list.size());
     }
@@ -61,16 +61,28 @@ class UserDaoTest {
         User user = dao.getUserById(3);
         dao.delete(user);
 
-        assertEquals(null, dao.getUserById(3));
+        assertNull(dao.getUserById(3));
     }
 
     @Test
-    void insertNewRecipeTest() {
+    void testInsertNewRecipe() {
         User newUser = new User("Alex", "Malotky", "ajmalotky", "");
 
         Recipe newRecipe = new Recipe("TestRecipe", "", "");
         newUser.addRecipe(newRecipe);
 
         int id = dao.insert(newUser);
+        User testUser = dao.getUserById(id);
+
+        assertEquals(newUser.toString(), testUser.toString());
+    }
+
+    @Test
+    void testRemoveOldRecipe() {
+        User user = dao.getUserById(2);
+        Recipe recipe = user.getRecipes().iterator().next();
+
+        user.removeRecipe(recipe);
+        dao.update(user);
     }
 }

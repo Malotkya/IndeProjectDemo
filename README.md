@@ -18,3 +18,6 @@ With this app you can save recipes, plan out meals, and create shopping lists fo
 ### Weekly Logs
 [Time Log](timelog.md)  
 [Weekly Journal](docs/reflection.md)
+
+### Code Coverage
+![Persistence Code Coverage](docs/images/codeCoverage.PNG)

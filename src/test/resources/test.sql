@@ -26,6 +26,7 @@ c
 e
  */
 
-insert into users(id, user_name, password, first_name, last_name) values ( 4, "User Name", "" , "First Name", "Last Name");
+insert into users(id, user_name, password, first_name, last_name)
+values ( 4, "User Name", "" , "First Name", "Last Name");
 
 /* Just don't put a semicolon in a comment and everything will be just fine! */

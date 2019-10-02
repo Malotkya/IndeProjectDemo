@@ -41,23 +41,23 @@ public class Recipe {
                 ", name='" + name + '\'' +
                 ", ingredients='" + ingredients + '\'' +
                 ", directions='" + directions + '\'' +
-                ", user=" + user +
+                ", user=" + user.getFirstName() + " " + user.getLastName() +
                 '}';
     }
 
-    public void setId(int id) {this.id = id;};
-    public int getId() {return id;};
+    public void setId(int id) {this.id = id;}
+    public int getId() {return id;}
 
-    public void setName(String name) {this.name = name;};
-    public String getName() {return name;};
+    public void setName(String name) {this.name = name;}
+    public String getName() {return name;}
 
-    public void setIngredients(String ingredients){this.ingredients = ingredients;};
-    public String getIngredients(){return ingredients;};
+    public void setIngredients(String ingredients){this.ingredients = ingredients;}
+    public String getIngredients(){return ingredients;}
 
-    public void setDirections(String directions){this.directions = directions;};
-    public String getDirections() {return directions;};
+    public void setDirections(String directions){this.directions = directions;}
+    public String getDirections() {return directions;}
 
-    public void setUser(User owner){this.user = user;};
-    public User getUser(){return user;};
+    public void setUser(User user){this.user = user;}
+    public User getUser(){return user;}
 
 }
