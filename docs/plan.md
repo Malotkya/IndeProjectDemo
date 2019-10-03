@@ -4,22 +4,22 @@
 - [X] Problem statement
 - [X] Complete User Stories
 - [X] Complete this project plan
-- [ ] Create project flow
-- [ ] Get most of the screen's designed
+- [X] Create project flow
+- [X] Get most of the screen's designed
 - [ ] End of the week Reflections
 
 ## Week 4
 - [X] Complete screen design
-- [ ] Create database design
+- [X] Create database design
 - [ ] Get set up on AWS
-- [ ] Create test database
-- [ ] Create User DAO
+- [X] Create test database
+- [X] Create User DAO
 - [ ] End of the week Reflections
  
 
 ## Week 5
-- [ ] Build template jsp
-- [ ] Create Recipe DAO
+- [X] Build template jsp
+- [X] Create Recipe DAO
 - [ ] Test API for proof of concept
 - [ ] Get set up on AWS
 - [ ] End of the week Reflections

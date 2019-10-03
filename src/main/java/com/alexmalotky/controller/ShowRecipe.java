@@ -16,15 +16,11 @@ import java.io.IOException;
 @WebServlet( urlPatterns = {"/Recipe"} )
 public class ShowRecipe extends HttpServlet {
 
-    private final Logger logger = LogManager.getLogger(this.getClass());
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         GenericDao<Recipe> recipeDao = new GenericDao<>(Recipe.class);
 
         int id = Integer.parseInt(request.getParameter("id"));
-
-        logger.debug(id);
 
         request.setAttribute("recipe", recipeDao.getById(id));
 

@@ -10,4 +10,5 @@
 | 09/25 | 18:00 | 19:15 | Running tests on DAO object | 1.25 |
 | 09/30 | 14:30 | 15:45 | Do reading and watch videos (Also did some work on recipe jsp page and entity) | 1.25 |
 | 10/02 | 11:00 | 02:00 | Finishing videos and working on exercise | 3.00 |
-| 10/02 | 19:12 | | Working of Recipe.jsp | |
+| 10/02 | 19:15 | 20:00| Working of Recipe.jsp | 0.75 |
+| 10/03 | 12:00 | 14:45 | Continuing work on recipe.jsp | 2.75 |

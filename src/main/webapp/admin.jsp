@@ -7,7 +7,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="jsp/header.jsp"%>
-
+<%@include file="jsp/topbar.jsp"%>
 <c:choose>
     <c:when test="${empty users}">
         <h3>No Results Found!</h3>

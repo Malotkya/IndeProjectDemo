@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar navbar-expand-sm bg-info navbar-dark row">
-    <a class="navbar-brand mr-auto" href="index.jsp">Inde Project</a>
+    <a href="index.jsp" class="navbar-brand mr-auto"><h1>Inde Project</h1></a>
 
     <ul class="navbar-nav">
         <li class="nav-item">

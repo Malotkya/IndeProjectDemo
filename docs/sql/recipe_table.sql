@@ -36,8 +36,8 @@ insert into recipes
 values(
 	3,
     "Test Recipe",
-	"{\"list\":[{\"ingrediant\": \"Ingrediant 1\",\"amount\": \"16 oz\"},{\"ingrediant\": \"Ingrediant 2\",\"amount\": \"5 lbs\"}]}",
-	"{\"list\": [\"Instruction 1\", \"Instruction 2\"]}",
+	"[\"{\\\"item\\\":\\\"Ingredient 1\\\", \\\"amount\\\":\\\"20\\\", \\\"unit\\\":\\\"oz\\\"}\",\"{\\\"item\\\":\\\"Ingredient 2\\\", \\\"amount\\\":\\\"5\\\", \\\"unit\\\":\\\"lbs\\\"}\"]",
+	"[\"Instruction 1\", \"Instruction 2\"]",
 	false,
     3
 );
