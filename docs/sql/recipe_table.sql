@@ -14,12 +14,32 @@ create table recipes (
 
 insert into recipes
 values(
-	0,
+	1,
+    "Sliced Bread",
+	"{ {\"Italian Loaf\" , \"1 Loaf\" } }",
+	"{\"Use a knife to cut the bread into slices\"}",
+	false,
+    1
+);
+
+insert into recipes
+values(
+	2,
     "Boss Sauce",
 	"{ {\"Spagheti Sauce\" , \"16 oz\" } }",
 	"{\"Poor sauce into sauce pan\", \" Bring sauce to a boil\"}",
-	false, 
+	false,
     2
+);
+
+insert into recipes
+values(
+	3,
+    "Test Recipe",
+	"{\"list\":[{\"ingrediant\": \"Ingrediant 1\",\"amount\": \"16 oz\"},{\"ingrediant\": \"Ingrediant 2\",\"amount\": \"5 lbs\"}]}",
+	"{\"list\": [\"Instruction 1\", \"Instruction 2\"]}",
+	false,
+    3
 );
 
 select * from recipes;

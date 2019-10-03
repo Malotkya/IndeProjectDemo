@@ -1,6 +1,9 @@
 package com.alexmalotky.controller;
 
+import com.alexmalotky.entity.Recipe;
 import com.alexmalotky.persistence.GenericDao;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,19 +12,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.rmi.ServerException;
 
 @WebServlet( urlPatterns = {"/Recipe"} )
-public class Recipe extends HttpServlet {
+public class ShowRecipe extends HttpServlet {
+
+    private final Logger logger = LogManager.getLogger(this.getClass());
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        GenericDao<Recipe> recipeDao = new GenericDao<Recipe>(Recipe.class);
+        GenericDao<Recipe> recipeDao = new GenericDao<>(Recipe.class);
 
-        int id = (Integer)request.getAttribute("id");
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        logger.debug(id);
 
         request.setAttribute("recipe", recipeDao.getById(id));
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/recipe.jsp");
         dispatcher.forward(request, response);
     }
 }

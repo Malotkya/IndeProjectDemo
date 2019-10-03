@@ -1,3 +1,20 @@
 [ERROR] 2019-10-02 11:44:54.374 [main] Database - com.mysql.cj.jdbc.exceptions.MySQLTransactionRollbackException: Lock wait timeout exceeded; try restarting transaction
 [ERROR] 2019-10-02 11:45:45.394 [main] Database - com.mysql.cj.jdbc.exceptions.MySQLTransactionRollbackException: Lock wait timeout exceeded; try restarting transaction
 [ERROR] 2019-10-02 11:46:36.458 [main] Database - com.mysql.cj.jdbc.exceptions.MySQLTransactionRollbackException: Lock wait timeout exceeded; try restarting transaction
+[DEBUG] 2019-10-02 19:15:15.425 [http-nio-8080-exec-1] Recipe - null
+[DEBUG] 2019-10-02 19:17:09.794 [http-nio-8080-exec-2] Recipe - null
+[DEBUG] 2019-10-02 19:17:13.056 [http-nio-8080-exec-3] Recipe - null
+[DEBUG] 2019-10-02 19:23:37.097 [http-nio-8080-exec-9] Recipe - 3
+[DEBUG] 2019-10-02 19:26:59.385 [http-nio-8080-exec-10] Recipe - 3
+[DEBUG] 2019-10-02 19:30:50.715 [http-nio-8080-exec-1] Recipe - 3
+[DEBUG] 2019-10-02 19:32:01.730 [http-nio-8080-exec-10] Recipe - 3
+[DEBUG] 2019-10-02 19:34:53.759 [http-nio-8080-exec-10] ShowRecipe - 3
+[DEBUG] 2019-10-02 19:37:29.696 [http-nio-8080-exec-8] ShowRecipe - 3
+[DEBUG] 2019-10-02 19:40:46.766 [http-nio-8080-exec-10] ShowRecipe - 3
+[DEBUG] 2019-10-02 19:51:34.429 [http-nio-8080-exec-4] ShowRecipe - 3
+[DEBUG] 2019-10-02 19:55:58.971 [http-nio-8080-exec-10] ShowRecipe - 3
+[DEBUG] 2019-10-02 19:57:18.885 [http-nio-8080-exec-3] ShowRecipe - 3
+[DEBUG] 2019-10-02 19:57:33.821 [http-nio-8080-exec-5] ShowRecipe - 3
+[DEBUG] 2019-10-02 20:00:47.403 [http-nio-8080-exec-9] ShowRecipe - 3
+[DEBUG] 2019-10-02 20:05:03.748 [http-nio-8080-exec-9] ShowRecipe - 3
+[DEBUG] 2019-10-02 20:09:23.034 [http-nio-8080-exec-10] ShowRecipe - 3

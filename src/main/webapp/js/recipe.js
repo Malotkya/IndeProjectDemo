@@ -9,14 +9,17 @@ const populateLists = () => {
     let ingredients = JSON.parse(document.getElementById("ingredients").value);
     let directions = JSON.parse(document.getElementById("directions").value);
 
+    console.log(ingredients);
+    console.log(directions);
+
     let ingredientsList = document.getElementById("ingredientsList");
     let directionsList = document.getElementById("directionsList");
 
-    for(let i=0; i<ingredients.size(); i++)
-        ingredientsList.innerHTML += "<li>" + ingredients[i] + "</li>";
+    for(let i=0; i<ingredients.list.length; i++)
+        ingredientsList.innerHTML += "<li>" + ingredients.list[i] + "</li>";
 
-    for(let i=0; i<directions.size(); i++)
-        directionsList.innerHTML += "<li>" + directions[i] + "</li>";
+    for(let i=0; i<directions.list.length; i++)
+        directionsList.innerHTML += "<li>" + directions.list[i] + "</li>";
 }
 
 const buildJSON = () => {
