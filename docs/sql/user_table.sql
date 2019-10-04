@@ -1,4 +1,5 @@
-use IndeProject;
+/*use IndeProject;*/
+use indeTest;
 
 drop table users;
 

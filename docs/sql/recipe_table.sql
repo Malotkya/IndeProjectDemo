@@ -1,4 +1,5 @@
-use Indeproject;
+/*use Indeproject;*/
+use indeTest;
 
 drop table recipes;
 

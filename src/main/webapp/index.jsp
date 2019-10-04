@@ -4,4 +4,6 @@
 <a href="Admin">Go to Admin Page</a>
 <a href="Recipe?id=3">Test Recipe Page</a>
 
+${testURI};
+
 <%@include file="jsp/footer.jsp"%>

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet( urlPatterns = {"/Recipe"} )
+@WebServlet( urlPatterns = {"/Recipe", "/EditRecipe", "/DeleteRecipe", "/LikeRecipe"} )
 public class ShowRecipe extends HttpServlet {
 
     @Override
@@ -27,4 +27,10 @@ public class ShowRecipe extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/recipe.jsp");
         dispatcher.forward(request, response);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //Only Edit or Delete Here
+    }
 }
+

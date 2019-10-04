@@ -12,3 +12,4 @@
 | 10/02 | 11:00 | 02:00 | Finishing videos and working on exercise | 3.00 |
 | 10/02 | 19:15 | 20:00| Working of Recipe.jsp | 0.75 |
 | 10/03 | 12:00 | 14:45 | Continuing work on recipe.jsp | 2.75 |
+| 10/04 | 12:00 | | Adding Edit Functions to recipe.jsp | |
