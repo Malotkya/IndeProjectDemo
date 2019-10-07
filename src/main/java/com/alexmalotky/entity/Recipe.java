@@ -21,6 +21,9 @@ public class Recipe {
     @Column(name = "directions")
     private String directions;
 
+    @Column(name = "public")
+    private Boolean publicView;
+
     @ManyToOne
     private User user;
 
@@ -59,5 +62,15 @@ public class Recipe {
 
     public void setUser(User user){this.user = user;}
     public User getUser(){return user;}
+
+    public void setPublicView(Boolean publicView){this.publicView = publicView;}
+    public Boolean isPublicView(){return publicView;}
+
+    public String getChecked() {
+        if(publicView)
+            return "checked";
+        else
+            return "";
+    }
 
 }

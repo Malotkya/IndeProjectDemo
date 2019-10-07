@@ -22,18 +22,30 @@
                 <span class="edit">
                     <button type="submit" id="submit">Save</button>
                     <button type="button" id="cancel">Cancel</button>
-                    <button type="button" id="delete">Delete</button>
+                    <button type="submit" id="delete">Delete</button>
                 </span>
-                <button type="button" id="edit">Edit</button>
-                <button type="button" id="like">Like</button>
+                <span class="initial">
+                    <button type="button" id="edit">Edit</button>
+                    <button type="submit" id="like">Like</button>
+                </span>
             </div>
 
-            <div id="recipe_name">
-                <h2>${recipe.name}</h2>
+            <div class="initial">
+                <h2 id="displayName" >${recipe.name}</h2>
                 <strong>By: ${recipe.user.userName}</strong>
             </div>
+            <div class="edit">
+                <label for="recipeName">Recipe Name: </label>
+                <input type="text"id="editName" name="recipeName"  id="recipeName" value="${recipe.name}">
+                <br/>
+                <input type="checkbox" name="publicView"id="publicView" ${recipe.checked}>
+                <label for="publicView">Make this recipe public</label>
+            </div>
+            <div class="w-100">
+                I hope to have tags added eventually
+            </div>
         </div>
-        <div id="tags"></div>
+
 
         <!-- Used by the javascript -->
         <input type="hidden" id="ingredients" name="ingredients" value='${recipe.ingredients}'/>
@@ -44,13 +56,20 @@
     <section class="row">
         <h3 class="col-12">Ingredients</h3>
         <ul id="ingredientsList" class="list-group col-12"></ul>
-        <div class="pr-15 col-12 edit">
+        <div class="pr-15 pl-0 col-12 edit">
             <div class="list-group-item">
                 <input type="text" id="newAmount"/>
-                <select id="newUnit">
+                <select id='newUnit'>
                     <option value=""> </option>
-                    <option value="lbs" id="lbs">Pounds</option>
-                    <option value="oz" id="oz">Ounces</option>
+                    <option disabled>Volumes</option>
+                    <c:forEach items="${units.volumes}" var="volume">
+                        <option value="${volume.code}">${volume.name}</option>
+                    </c:forEach>
+
+                    <option disabled>Weights</option>
+                    <c:forEach items="${units.weights}" var="weight">
+                        <option value="${weight.code}">${weight.name}</option>
+                    </c:forEach>
                 </select>
                 <input type="text" id="newIngredient" />
                 <button type="button" id="addNewIngredient">Add</button>
@@ -60,7 +79,8 @@
 
     <section class="row">
         <h3 class="col-12">Instructions</h3>
-        <ol id="directionsList" class="list-group col-12"></ol>
+        <ol id="directionsList" class="list-group col-12 initial"></ol>
+        <textarea id="directionsInput" class="edit list-group-item col-12"></textarea>
     </section><br />
 </form>
 

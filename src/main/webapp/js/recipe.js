@@ -1,5 +1,5 @@
 let templateSelect, templateNumber, templateText, templateButton = {};
-let ingredients, directions, ingredientsList, directionsList = {};
+let ingredients, directions, ingredientsList, directionsList, directionsInput = {};
 let btnEdit, btnSubmit, btnCancel = {};
 
 const init = () => {
@@ -8,6 +8,7 @@ const init = () => {
     directions = JSON.parse(document.getElementById("directions").value);
     ingredientsList = document.getElementById("ingredientsList");
     directionsList = document.getElementById("directionsList");
+    directionsInput = document.getElementById("directionsInput");
 
     //Templates for building edit form.
     templateSelect = document.getElementById("newUnit");
@@ -43,7 +44,9 @@ const show = () => {
         item.setAttribute("style", "display:none;");
     });
 
-    btnEdit.setAttribute("style", "display:inline");
+    document.querySelectorAll(".initial").forEach(function(item){
+        item.setAttribute("style", "display:inline;");
+    });
 
 
 };
@@ -59,15 +62,21 @@ const displayText = value => {
 
 const edit = () => {
     ingredientsList.innerHTML = "";
+    directionsInput.innerText = "";
 
     for(let i=0;i<ingredients.length;i++)
         ingredientsList.appendChild(display_html(ingredients[i]));
+
+    for(let i=0; i<directions.length; i++)
+        directionsInput.innerHTML += directions[i] + "\n";
 
     document.querySelectorAll(".edit").forEach(function(item){
         item.setAttribute("style", "display:inline;");
     });
 
-    btnEdit.setAttribute("style", "display:none");
+    document.querySelectorAll(".initial").forEach(function(item){
+        item.setAttribute("style", "display:none;");
+    });
 };
 
 const display_html = value => {
@@ -77,7 +86,7 @@ const display_html = value => {
 
 const buildAll = (amount, unit, item) => {
     let li = document.createElement("li");
-    li.setAttribute("class", "list-group-item")
+    li.setAttribute("class", "list-group-item");
 
     let objAmount = buildNumber(amount);
     let objUnit   = buildSelect(unit);
@@ -152,6 +161,11 @@ const deleteIngredient = event => {
 };
 
 const buildJson = () => {
+    buildIngredientsJson();
+    buildDirectionsJson();
+};
+
+const buildIngredientsJson = () => {
     let list = ingredientsList.querySelectorAll("li");
     let output = [];
 
@@ -165,7 +179,12 @@ const buildJson = () => {
         output.push(JSON.stringify(obj));
     }
 
-    document.getElementById("json").value = JSON.stringify(output);
+    ingredients.value = JSON.stringify(output);
+};
+
+const buildDirectionsJson = () => {
+    let list = directionsInput.value.trim().split("\n");
+    directions.value = JSON.stringify(list);
 };
 
 const stopEnter = e => {

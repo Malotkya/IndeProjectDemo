@@ -55,3 +55,4 @@
 [DEBUG] 2019-10-03 14:19:13.146 [http-nio-8080-exec-8] ShowRecipe - 3
 [DEBUG] 2019-10-03 14:19:13.353 [http-nio-8080-exec-9] ShowRecipe - 3
 [DEBUG] 2019-10-03 14:19:13.718 [http-nio-8080-exec-2] ShowRecipe - 3
+[DEBUG] 2019-10-07 15:29:40.955 [main] UnitsTest - <select><option value=''> </option><option disabled>Volumes</option><option value='tsp'>Teaspoon</option><option value='Tsp'>Tablespoon</option><option value='foz'>Fluid Ounce</option><option value='c'>Cup</option><option value='p'>Pint</option><option value='q'>Quart</option><option value='g'>Gallon</option><option value='mL'>Milliliter</option><option value='L'>Liter</option><option disabled>Weights</option><option value='mg'>Milligram</option><option value='g'>Gram</option><option value='kg'>Kilogram</option><option value='oz'>Ounce</option><option value='lbs'>Pound</option>
