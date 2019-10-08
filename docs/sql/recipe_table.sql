@@ -1,4 +1,4 @@
-/*use Indeproject;*/
+use IndeProject;
 use indeTest;
 
 drop table recipes;
@@ -10,7 +10,7 @@ create table recipes (
     directions varchar(2000),
     public bool,
     user_id int,
-    foreign key (user_id) references Users(id)
+    foreign key (user_id) references users(id)
 );
 
 insert into recipes

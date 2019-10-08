@@ -56,3 +56,40 @@
 [DEBUG] 2019-10-03 14:19:13.353 [http-nio-8080-exec-9] ShowRecipe - 3
 [DEBUG] 2019-10-03 14:19:13.718 [http-nio-8080-exec-2] ShowRecipe - 3
 [DEBUG] 2019-10-07 15:29:40.955 [main] UnitsTest - <select><option value=''> </option><option disabled>Volumes</option><option value='tsp'>Teaspoon</option><option value='Tsp'>Tablespoon</option><option value='foz'>Fluid Ounce</option><option value='c'>Cup</option><option value='p'>Pint</option><option value='q'>Quart</option><option value='g'>Gallon</option><option value='mL'>Milliliter</option><option value='L'>Liter</option><option disabled>Weights</option><option value='mg'>Milligram</option><option value='g'>Gram</option><option value='kg'>Kilogram</option><option value='oz'>Ounce</option><option value='lbs'>Pound</option>
+[ERROR] 2019-10-08 14:54:08.518 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:54:15.172 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:54:15.385 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:54:15.874 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:54:15.917 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:54:16.081 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:54:16.241 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:54:16.305 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:54:16.396 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:54:16.462 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:54:16.575 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:54:16.626 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:54:16.697 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:54:16.761 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:54:16.990 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:54:17.090 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'users'
+[ERROR] 2019-10-08 14:55:34.663 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:55:39.087 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:55:39.152 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:55:39.362 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:55:39.408 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:55:39.489 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:55:39.627 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:55:39.688 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:55:39.738 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:55:39.817 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:55:39.880 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:55:39.921 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:55:39.992 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:55:40.050 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:55:40.144 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'recipes'
+[ERROR] 2019-10-08 14:55:40.185 [main] Database - java.sql.SQLSyntaxErrorException: DELETE command denied to user 'indeApp'@'localhost' for table 'users'
+[ERROR] 2019-10-08 14:59:41.755 [main] Database - java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails
+[ERROR] 2019-10-08 15:23:59.437 [main] Database - java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`indetest`.`recipes`, CONSTRAINT `recipes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`))
+[ERROR] 2019-10-08 15:25:59.592 [main] Database - java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`indetest`.`recipes`, CONSTRAINT `recipes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`))
+[ERROR] 2019-10-08 15:35:46.162 [main] Database - java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`indetest`.`recipes`, CONSTRAINT `recipes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`))
+[ERROR] 2019-10-08 15:38:00.475 [main] Database - java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`indetest`.`recipes`, CONSTRAINT `recipes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`))

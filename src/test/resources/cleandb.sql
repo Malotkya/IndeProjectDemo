@@ -1,5 +1,7 @@
+SET SQL_SAFE_UPDATES = 0;
 delete from recipes;
 delete from users;
+SET SQL_SAFE_UPDATES = 1;
 
 insert into users(id, user_name, password, first_name, last_name) values ( 1, "test1", "12345" , "Bob", "Vance");
 insert into users(id, user_name, password, first_name, last_name) values ( 2, "test2", "qwerty" , "Alex", "Malotky");
