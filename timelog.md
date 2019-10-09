@@ -15,3 +15,4 @@
 | 10/04 | 12:00 | 14:00 | Adding Edit Functions to recipe.jsp | 2.00 
 | 10/07 | 14:00 | 15:45 | Completing recipe.jsp (I hope) | 1.75 |
 | 10/08 | 13:30 | 16:30 | Initial Deploy to AWS | 3:00 |
+| 10/09 | 14:30 | 16:00 | Getting a jump start on week 7 Videos | 1.50 |

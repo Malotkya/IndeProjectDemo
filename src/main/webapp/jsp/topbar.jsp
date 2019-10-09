@@ -21,7 +21,7 @@
 </nav>
 
 <!-- Login Modal -->
-<form class="modal form" id="loginModal" action="Login" method="post">
+<form class="modal form" id="loginModal" ACTION="j_security_check" METHOD="POST">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -32,9 +32,9 @@
 
             <div class="modal-body">
                 <label for="username">Username:</label>
-                <input type="text" name="username" id="username" class="form-control"/>
+                <input type="text" name="j_username" id="username" class="form-control"/>
                 <label for="password">Password:</label>
-                <input type="password" name="password" id="password" class="form-control"/>
+                <input type="password" name="j_password" id="password" class="form-control"/>
             </div>
 
             <div class="modal-footer">
