@@ -39,7 +39,7 @@ values(
     "Test Recipe",
 	"[\"{\\\"item\\\":\\\"Ingredient 1\\\", \\\"amount\\\":\\\"20\\\", \\\"unit\\\":\\\"oz\\\"}\",\"{\\\"item\\\":\\\"Ingredient 2\\\", \\\"amount\\\":\\\"5\\\", \\\"unit\\\":\\\"lbs\\\"}\"]",
 	"[\"Instruction 1\", \"Instruction 2\"]",
-	false,
+	true,
     3
 );
 

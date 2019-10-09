@@ -1,6 +1,6 @@
 let templateSelect, templateNumber, templateText, templateButton = {};
 let ingredients, directions, ingredientsList, directionsList, directionsInput = {};
-let btnEdit, btnSubmit, btnCancel = {};
+let btnEdit, btnSubmit, btnCancel, btnDelete, btnLike = {};
 
 const init = () => {
     //Used for displaying elements.
@@ -19,12 +19,14 @@ const init = () => {
     btnSubmit = document.getElementById("submit");
     btnEdit = document.getElementById("edit");
     btnCancel = document.getElementById("cancel");
+    btnDelete = document.getElementById("delete");
+    btnLike = document.getElementById("like");
 
     show();
 
     //Add Event Listeners
     templateButton.addEventListener("click", addNewIngredient);
-    btnSubmit.addEventListener("click", buildJson);
+    btnSubmit.addEventListener("click", submit);
     btnEdit.addEventListener("click", edit);
     btnCancel.addEventListener("click", show);
     document.querySelector("form").addEventListener("keypress", stopEnter)
@@ -179,15 +181,22 @@ const buildIngredientsJson = () => {
         output.push(JSON.stringify(obj));
     }
 
-    ingredients.value = JSON.stringify(output);
+    document.getElementById("ingredients").value = JSON.stringify(output);
 };
 
 const buildDirectionsJson = () => {
     let list = directionsInput.value.trim().split("\n");
-    directions.value = JSON.stringify(list);
+    document.getElementById("directions").value = JSON.stringify(list);
 };
+
+const submit = event => {
+    event.currentTarget.setAttribute("name", "submit");
+
+    if(event.currentTarget.value == "Save");
+        buildJson();
+}
 
 const stopEnter = e => {
     e = e || event;
     return (e.keyCode || e.which || e.charCode || 0) !== 13;
-}
+};

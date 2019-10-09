@@ -70,7 +70,7 @@ public class Recipe {
         if(publicView)
             return "checked";
         else
-            return "";
+            return "not-checked";
     }
 
 }

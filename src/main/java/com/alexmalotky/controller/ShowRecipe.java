@@ -3,8 +3,6 @@ package com.alexmalotky.controller;
 import com.alexmalotky.entity.Recipe;
 import com.alexmalotky.entity.Units;
 import com.alexmalotky.persistence.GenericDao;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,26 +12,84 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet( urlPatterns = {"/Recipe", "/EditRecipe", "/DeleteRecipe", "/LikeRecipe"} )
+@WebServlet( urlPatterns = {"/Recipe"} )
 public class ShowRecipe extends HttpServlet {
+
+    private GenericDao<Recipe> dao = new GenericDao<>(Recipe.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        GenericDao<Recipe> recipeDao = new GenericDao<>(Recipe.class);
-        Units units = new Units();
+        showRecipe(request, response);
+    }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String submitType = request.getParameter("submit");
         int id = Integer.parseInt(request.getParameter("id"));
 
-        request.setAttribute("recipe", recipeDao.getById(id));
-        request.setAttribute("units", units); //TODO add unit to global session later
+        switch (submitType) {
+            case "Save":
+                performSave(request, id);
+                showRecipe(request, response);
+                break;
+            case "Delete":
+                performDelete(id);
+                goHome(request, response);
+                break;
+            case "Like":
+                performLike(id);
+                showRecipe(request, response);
+                break;
+            case "Unlike":
+                performUnlike(id);
+                showRecipe(request, response);
+                break;
+        }
+    }
+
+    private void goHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/");
+        dispatcher.forward(request, response);
+    }
+
+    private void showRecipe(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //TODO add unit to global session later
+        Units units = new Units();
+        request.setAttribute("units", units);
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("recipe", dao.getById(id));
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/recipe.jsp");
         dispatcher.forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //Only Edit or Delete Here
+    private void performSave(HttpServletRequest request, int id) {
+        Recipe recipe = dao.getById(id);
+        String newName = request.getParameter("recipeName");
+        Boolean makePublic = Boolean.getBoolean(request.getParameter("publicView"));
+        String newIngredients = request.getParameter("ingredients");
+        String newDirections = request.getParameter("directions");
+
+        recipe.setName(newName);
+        recipe.setPublicView(makePublic);
+        recipe.setIngredients(newIngredients);
+        recipe.setDirections(newDirections);
+
+        dao.saveOrUpdate(recipe);
+    }
+
+    private void performDelete(int id) {
+        Recipe recipe = dao.getById(id);
+        dao.delete(recipe);
+    }
+
+    private void performLike(int id) {
+        //TODO add recipe and user to liked table
+    }
+
+    private void performUnlike(int id){
+        //TODO remove recipe and user from liked table
     }
 }
 

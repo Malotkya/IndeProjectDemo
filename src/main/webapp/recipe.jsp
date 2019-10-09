@@ -20,13 +20,13 @@
             <!-- TODO test if recipe.user is is same as one logged in -->
             <div class="float-right">
                 <span class="edit">
-                    <button type="submit" id="submit">Save</button>
-                    <button type="button" id="cancel">Cancel</button>
-                    <button type="submit" id="delete">Delete</button>
+                    <input type="submit" id="submit" value="Save" />
+                    <input type="button" id="cancel" value="Cancel" />
+                    <input type="submit" id="delete" value="Delete" />
                 </span>
                 <span class="initial">
-                    <button type="button" id="edit">Edit</button>
-                    <button type="submit" id="like">Like</button>
+                    <input type="button" id="edit" value="Edit" />
+                    <input type="submit" id="like" value="Like" />
                 </span>
             </div>
 
@@ -39,7 +39,7 @@
                 <input type="text"id="editName" name="recipeName"  id="recipeName" value="${recipe.name}">
                 <br/>
                 <input type="checkbox" name="publicView"id="publicView" ${recipe.checked}>
-                <label for="publicView">Make this recipe public</label>
+                <label for="publicView">${recipe.checked}<!--Make this recipe public--></label>
             </div>
             <div class="w-100">
                 I hope to have tags added eventually
