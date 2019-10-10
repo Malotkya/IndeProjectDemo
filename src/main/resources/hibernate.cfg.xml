@@ -20,6 +20,7 @@
         <mapping class="com.alexmalotky.entity.Recipe"/>
         <mapping class="com.alexmalotky.entity.Volume"/>
         <mapping class="com.alexmalotky.entity.Weight"/>
+        <mapping class="com.alexmalotky.entity.Favorite"/>
 
     </session-factory>
 

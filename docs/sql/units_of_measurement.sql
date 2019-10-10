@@ -1,5 +1,5 @@
 use IndeProject;
-use indetest;
+-- use indetest;
 
 drop table Volume;
 drop table Weight;

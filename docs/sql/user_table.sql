@@ -1,5 +1,5 @@
 use IndeProject;
-use indeTest;
+-- use indeTest;
 
 drop table users;
 

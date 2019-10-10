@@ -1,7 +1,7 @@
-SET SQL_SAFE_UPDATES = 0;
+
 delete from recipes;
 delete from users;
-SET SQL_SAFE_UPDATES = 1;
+delete from favorties;
 
 insert into users(id, user_name, password, first_name, last_name) values ( 1, "test1", "12345" , "Bob", "Vance");
 insert into users(id, user_name, password, first_name, last_name) values ( 2, "test2", "qwerty" , "Alex", "Malotky");
@@ -36,3 +36,9 @@ values(
 	false,
     3
 );
+
+insert into favorites values(1, 1, 1);
+insert into favorites values(2, 3, 1);
+insert into favorites values(3, 1, 2);
+insert into favorites values(4, 2, 2);
+insert into favorites values(5, 3, 2);
