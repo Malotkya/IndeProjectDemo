@@ -62,10 +62,10 @@ class UserDaoTest {
 
     @Test
     void testDelete() {
-        User user = dao.getUserById(3);
+        User user = dao.getUserById(2);
         dao.delete(user);
 
-        assertNull(dao.getUserById(3));
+        assertNull(dao.getUserById(2));
     }
 
     @Test

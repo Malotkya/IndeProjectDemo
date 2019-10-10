@@ -1,7 +1,7 @@
 
+delete from favorites;
 delete from recipes;
 delete from users;
-delete from favorties;
 
 insert into users(id, user_name, password, first_name, last_name) values ( 1, "test1", "12345" , "Bob", "Vance");
 insert into users(id, user_name, password, first_name, last_name) values ( 2, "test2", "qwerty" , "Alex", "Malotky");

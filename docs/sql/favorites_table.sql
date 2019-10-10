@@ -4,10 +4,9 @@ use indetest;
 drop table favorites;
 
 create table favorites (
-	id int, -- Needed for hibernate
+	id int primary key auto_increment, -- Needed for hibernate
 	recipe_id int,
     user_id int,
-    primary key (id),
     foreign key (recipe_id) references recipes(id),
     foreign key (user_id) references users(id)
 );

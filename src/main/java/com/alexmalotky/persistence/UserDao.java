@@ -72,7 +72,7 @@ public class UserDao{
 
     private void deleteFavorites(User user){
         GenericDao<Favorite> dao = new GenericDao<>(Favorite.class);
-        List<Favorite> list = dao.findByPropertyEqual("user_id", user.getId());
+        List<Favorite> list = dao.findByPropertyEqual("user", user);
         for(Favorite f: list)
             dao.delete(f);
     }
@@ -80,6 +80,7 @@ public class UserDao{
     private void deleteUser(User user) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
+        user = getUserById(user.getId());
         session.delete(user);
         transaction.commit();
         session.close();
@@ -87,8 +88,12 @@ public class UserDao{
 
     private void unLinkRecipes(User user) {
         Set<Recipe> list = user.getRecipes();
+        GenericDao<Recipe> dao = new GenericDao<>(Recipe.class);
 
-        for(Recipe r: list)
+        for(Recipe r: list) {
             r.setUser(null);
+            dao.saveOrUpdate(r);
+        }
+
     }
 }
