@@ -11,17 +11,29 @@
     <a href="index.jsp" class="navbar-brand mr-auto"><h1>Inde Project</h1></a>
 
     <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#loginModal">Log In</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link">Sign Up</a>
-        </li>
+        <c:choose>
+            <c:when test="${empty sessionScope.user}" >
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="modal" data-target="#loginModal">Log In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Sign Up</a>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li class="nav-item">
+                    <p>Welcome - ${sessionScope.user.firstName}</p>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Logout">Log Out</a>
+                </li>
+            </c:otherwise>
+        </c:choose>
     </ul>
 </nav>
 
 <!-- Login Modal -->
-<form class="modal form" id="loginModal" ACTION="j_security_check" METHOD="POST">
+<form class="modal form" id="loginModal" ACTION="Login" METHOD="POST">
     <div class="modal-dialog">
         <div class="modal-content">
 

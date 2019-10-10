@@ -1,5 +1,7 @@
 package com.alexmalotky.persistence;
 
+import com.alexmalotky.entity.Favorite;
+import com.alexmalotky.entity.Recipe;
 import com.alexmalotky.entity.User;
 import org.apache.logging.log4j.*;
 import org.hibernate.*;
@@ -29,6 +31,21 @@ public class UserDao{
         return user;
     }
 
+    public User getUserByUserName(String user_name) {
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> query = builder.createQuery(User.class);
+        Root<User> root = query.from(User.class);
+        query.select(root).where(builder.equal(root.get("userName"),user_name));
+        List<User> output = session.createQuery(query).getResultList();
+        session.close();
+
+        if(output.size() < 1)
+            return null;
+
+        return output.get(0);
+    }
+
     public int insert(User user){
         int id;
         Session session = sessionFactory.openSession();
@@ -48,10 +65,30 @@ public class UserDao{
     }
 
     public void delete(User user){
+        deleteFavorites(user);
+        unLinkRecipes(user);
+        deleteUser(user);
+    }
+
+    private void deleteFavorites(User user){
+        GenericDao<Favorite> dao = new GenericDao<>(Favorite.class);
+        List<Favorite> list = dao.findByPropertyEqual("user_id", user.getId());
+        for(Favorite f: list)
+            dao.delete(f);
+    }
+
+    private void deleteUser(User user) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(user);
         transaction.commit();
         session.close();
+    }
+
+    private void unLinkRecipes(User user) {
+        Set<Recipe> list = user.getRecipes();
+
+        for(Recipe r: list)
+            r.setUser(null);
     }
 }

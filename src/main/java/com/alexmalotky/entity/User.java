@@ -19,6 +19,9 @@ public class User {
     @Column(name = "user_name")
     private String userName;
 
+    @Column(name = "password")
+    private String password;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
@@ -29,6 +32,12 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER )
     private Set<Recipe> recipes = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name="favorites",
+                joinColumns =        {@JoinColumn(name="user_id", nullable = false, updatable = false)},
+                inverseJoinColumns = {@JoinColumn(name="recipe_id", nullable = false, updatable = false)})
+    private Set<Recipe> favorites = new HashSet<>();
 
     public User() {
     }
@@ -82,5 +91,21 @@ public class User {
 
     public void removeRecipe(Recipe recipe) {
         recipes.remove(recipe);
+    }
+
+    public Set<Recipe> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(Set<Recipe> favorites) {
+        this.favorites = favorites;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

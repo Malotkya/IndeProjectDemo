@@ -3,6 +3,8 @@ package com.alexmalotky.persistence;
 import com.alexmalotky.entity.Recipe;
 import com.alexmalotky.entity.User;
 import com.alexmalotky.util.Database;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserDaoTest {
 
     private UserDao dao;
+    private final Logger logger = LogManager.getLogger(this.getClass());
 
     @BeforeEach
     void setUp() {
@@ -85,5 +88,24 @@ class UserDaoTest {
 
         user.removeRecipe(recipe);
         dao.update(user);
+    }
+
+    @Test
+    void testFavorites() {
+        User user = dao.getUserById(2);
+
+        logger.debug(user.getFavorites().toString());
+        logger.debug(user);
+
+        assertEquals(3, user.getFavorites().size());
+    }
+
+    @Test
+    void testGetByUserName() {
+        User user = dao.getUserByUserName("test1");
+        assertNotNull(user);
+
+        user = dao.getUserByUserName("ThisIsntAUserName");
+        assertNull(user);
     }
 }
