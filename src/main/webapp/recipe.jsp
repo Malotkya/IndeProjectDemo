@@ -94,7 +94,4 @@
         </c:if>
     </section><br />
 </form>
-
-
 <%@include file="jsp/footer.jsp"%>
-<script>init()</script>

@@ -30,7 +30,7 @@ const init = () => {
     btnEdit.addEventListener("click", edit);
     btnCancel.addEventListener("click", show);
     document.querySelector("form").addEventListener("keypress", stopEnter)
-};
+}; window.onload = init;
 
 const show = () => {
     ingredientsList.innerHTML = "";
