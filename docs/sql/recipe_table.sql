@@ -9,8 +9,7 @@ create table recipes (
     ingredients varchar(2000),
     directions varchar(2000),
     public bool,
-    user_id int,
-    foreign key (user_id) references users(id)
+    user_id int
 );
 
 insert into recipes
@@ -40,7 +39,7 @@ values(
 	"[\"{\\\"item\\\":\\\"Ingredient 1\\\", \\\"amount\\\":\\\"20\\\", \\\"unit\\\":\\\"oz\\\"}\",\"{\\\"item\\\":\\\"Ingredient 2\\\", \\\"amount\\\":\\\"5\\\", \\\"unit\\\":\\\"lbs\\\"}\"]",
 	"[\"Instruction 1\", \"Instruction 2\"]",
 	true,
-    3
+    2
 );
 
 select * from recipes;

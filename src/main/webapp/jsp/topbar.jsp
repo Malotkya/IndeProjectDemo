@@ -17,12 +17,12 @@
                     <a class="nav-link" data-toggle="modal" data-target="#loginModal">Log In</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">Sign Up</a>
+                    <a class="nav-link" href="NewUser">Sign Up</a>
                 </li>
             </c:when>
             <c:otherwise>
                 <li class="nav-item">
-                    <p>Welcome - ${sessionScope.user.firstName}</p>
+                    <a class="navbar-brand" href="Account">Welcome - ${sessionScope.user.firstName}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Logout">Log Out</a>

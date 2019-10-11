@@ -1,5 +1,5 @@
 use IndeProject;
-use indetest;
+-- use indetest;
 
 drop table favorites;
 

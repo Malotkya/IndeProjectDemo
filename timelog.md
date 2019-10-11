@@ -17,3 +17,4 @@
 | 10/08 | 13:30 | 16:30 | Initial Deploy to AWS | 3:00 |
 | 10/09 | 14:30 | 16:00 | Getting a jump start on week 7 Videos | 1.50 |
 | 10/09 | 18:45 | 19:30 | Adding favorites table | 0.75 |
+| 10/10 | 10:00 | 14:00 | Fixed errors with favorites table, add login/logout functionality, added session variables, and created base line for user settings | 6.00 |

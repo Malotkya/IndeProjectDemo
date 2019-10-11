@@ -10,22 +10,27 @@
 <%@include file="jsp/topbar.jsp"%>
 <script src="js/recipe.js"></script>
 
-<form method="post" action="#">
+<c:set var="isOwnedByUser" scope="page" value="${recipe.user.id == sessionScope.user.id}"/>
+
+<form method="post" action="Recipe">
     <section class="row" >
         <figure class="col-sm-6 col-md-4 col-lg-3" >
             <img alt="A picture will go here" src="img/0.jpg" class=" img-fluid img-thumbnail mx-auto d-block"/>
         </figure>
         <div class="col">
 
-            <!-- TODO test if recipe.user is is same as one logged in -->
             <div class="float-right">
-                <span class="edit">
-                    <input type="submit" id="submit" value="Save" />
-                    <input type="button" id="cancel" value="Cancel" />
-                    <input type="submit" id="delete" value="Delete" />
-                </span>
+                <c:if test="${isOwnedByUser}">
+                    <span class="edit">
+                        <input type="submit" id="submit" value="Save" />
+                        <input type="button" id="cancel" value="Cancel" />
+                        <input type="submit" id="delete" value="Delete" />
+                    </span>
+                </c:if>
                 <span class="initial">
-                    <input type="button" id="edit" value="Edit" />
+                    <c:if test="${isOwnedByUser}">
+                        <input type="button" id="edit" value="Edit" />
+                    </c:if>
                     <input type="submit" id="like" value="Like" />
                 </span>
             </div>
@@ -34,13 +39,15 @@
                 <h2 id="displayName" >${recipe.name}</h2>
                 <strong>By: ${recipe.user.userName}</strong>
             </div>
-            <div class="edit">
-                <label for="recipeName">Recipe Name: </label>
-                <input type="text"id="editName" name="recipeName"  id="recipeName" value="${recipe.name}">
-                <br/>
-                <input type="checkbox" name="publicView"id="publicView" ${recipe.checked}>
-                <label for="publicView">${recipe.checked}<!--Make this recipe public--></label>
-            </div>
+            <c:if test="${isOwnedByUser}">
+                <div class="edit">
+                    <label for="recipeName">Recipe Name: </label>
+                    <input type="text"id="editName" name="recipeName"  id="recipeName" value="${recipe.name}">
+                    <br/>
+                    <input type="checkbox" name="publicView"id="publicView" ${recipe.checked}>
+                    <label for="publicView">${recipe.checked}<!--Make this recipe public--></label>
+                </div>
+            </c:if>
             <div class="w-100">
                 I hope to have tags added eventually
             </div>
@@ -56,31 +63,35 @@
     <section class="row">
         <h3 class="col-12">Ingredients</h3>
         <ul id="ingredientsList" class="list-group col-12"></ul>
-        <div class="pr-15 pl-0 col-12 edit">
-            <div class="list-group-item">
-                <input type="text" id="newAmount"/>
-                <select id='newUnit'>
-                    <option value=""> </option>
-                    <option disabled>Volumes</option>
-                    <c:forEach items="${units.volumes}" var="volume">
-                        <option value="${volume.code}">${volume.name}</option>
-                    </c:forEach>
+        <c:if test="${isOwnedByUser}">
+            <div class="pr-15 pl-0 col-12 edit">
+                <div class="list-group-item">
+                    <input type="text" id="newAmount"/>
+                    <select id='newUnit'>
+                        <option value=""> </option>
+                        <option disabled>Volumes</option>
+                        <c:forEach items="${units.volumes}" var="volume">
+                            <option value="${volume.code}">${volume.name}</option>
+                        </c:forEach>
 
-                    <option disabled>Weights</option>
-                    <c:forEach items="${units.weights}" var="weight">
-                        <option value="${weight.code}">${weight.name}</option>
-                    </c:forEach>
-                </select>
-                <input type="text" id="newIngredient" />
-                <button type="button" id="addNewIngredient">Add</button>
+                        <option disabled>Weights</option>
+                        <c:forEach items="${units.weights}" var="weight">
+                            <option value="${weight.code}">${weight.name}</option>
+                        </c:forEach>
+                    </select>
+                    <input type="text" id="newIngredient" />
+                    <button type="button" id="addNewIngredient">Add</button>
+                </div>
             </div>
-        </div>
+        </c:if>
     </section><br />
 
     <section class="row">
         <h3 class="col-12">Instructions</h3>
         <ol id="directionsList" class="list-group col-12 initial"></ol>
-        <textarea id="directionsInput" class="edit list-group-item col-12"></textarea>
+        <c:if test="${isOwnedByUser}">
+            <textarea id="directionsInput" class="edit list-group-item col-12"></textarea>
+        </c:if>
     </section><br />
 </form>
 

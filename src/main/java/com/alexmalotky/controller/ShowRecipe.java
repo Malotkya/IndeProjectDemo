@@ -19,7 +19,15 @@ public class ShowRecipe extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        showRecipe(request, response);
+        //TODO add unit to global session later
+        Units units = new Units();
+        request.setAttribute("units", units);
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("recipe", dao.getById(id));
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/recipe.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
@@ -30,38 +38,21 @@ public class ShowRecipe extends HttpServlet {
         switch (submitType) {
             case "Save":
                 performSave(request, id);
-                showRecipe(request, response);
+                response.sendRedirect(request.getContextPath() + "/Recipe?id=" + id);
                 break;
             case "Delete":
                 performDelete(id);
-                goHome(request, response);
+                response.sendRedirect(request.getContextPath() + "/");
                 break;
             case "Like":
                 performLike(id);
-                showRecipe(request, response);
+                response.sendRedirect(request.getContextPath() + "/Recipe?id=" + id);
                 break;
             case "Unlike":
                 performUnlike(id);
-                showRecipe(request, response);
+                response.sendRedirect(request.getContextPath() + "/Recipe?id=" + id);
                 break;
         }
-    }
-
-    private void goHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/");
-        dispatcher.forward(request, response);
-    }
-
-    private void showRecipe(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO add unit to global session later
-        Units units = new Units();
-        request.setAttribute("units", units);
-
-        int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("recipe", dao.getById(id));
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/recipe.jsp");
-        dispatcher.forward(request, response);
     }
 
     private void performSave(HttpServletRequest request, int id) {
