@@ -77,15 +77,6 @@ public class UserDao{
             dao.delete(f);
     }
 
-    private void deleteUser(User user) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        user = getUserById(user.getId());
-        session.delete(user);
-        transaction.commit();
-        session.close();
-    }
-
     private void unLinkRecipes(User user) {
         Set<Recipe> list = user.getRecipes();
         GenericDao<Recipe> dao = new GenericDao<>(Recipe.class);
@@ -95,5 +86,14 @@ public class UserDao{
             dao.saveOrUpdate(r);
         }
 
+    }
+
+    private void deleteUser(User user) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        user = getUserById(user.getId());
+        session.delete(user);
+        transaction.commit();
+        session.close();
     }
 }

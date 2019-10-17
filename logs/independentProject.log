@@ -2,3 +2,8 @@
 [INFO ] 2019-10-16 12:43:37.270 [http-nio-8080-exec-4] Login - The logged in user: ajmalotky has a role of admin: false
 [INFO ] 2019-10-16 12:43:39.609 [http-nio-8080-exec-6] Login - The logged in user: ajmalotky has a role of admin: false
 [INFO ] 2019-10-16 12:43:39.610 [http-nio-8080-exec-6] Login - The logged in user: ajmalotky has a role of admin: false
+[DEBUG] 2019-10-16 19:23:54.837 [main] EncryptionTest - 29edd8bd323c7b2f173328ed5a30327604f15b85a26b18372d3a3404c21e97b7$1$55028b63e9140276c8ae45c8c3b0ac73c7ebcb12e3924c69eef7a9bc31b7ccd3
+[DEBUG] 2019-10-16 19:27:30.374 [main] EncryptionTest - java.security.NoSuchAlgorithmException: PBKDF2WithHmacSHA512 MessageDigest not available
+[DEBUG] 2019-10-16 19:27:31.145 [main] EncryptionTest - c341761fae17$100000$12345
+[DEBUG] 2019-10-16 19:29:18.386 [main] EncryptionTest - 5e9c27edf3feda053c3303a261541d8e357447c48559a3e7d5799241ff9a37fe$1$c1d45dcf986a01e7c61968b06a27d4de26fc47c12ffab6d8258cf9cb4a20d019
+[DEBUG] 2019-10-16 19:29:52.475 [main] EncryptionTest - c0cc1cbff88f10da4ffa502f8b1d3a5da98c40bfb9aff1e72d2d4111ed073a36$1$aeb053ebf7d95d34448ba0f68990995615fa49aa4f7aa5d90f7e4b74cf9678d8

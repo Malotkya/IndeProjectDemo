@@ -3,6 +3,7 @@ package com.alexmalotky.controller;
 import com.alexmalotky.entity.Recipe;
 import com.alexmalotky.entity.Units;
 import com.alexmalotky.persistence.GenericDao;
+import com.alexmalotky.util.LoginTracker;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,10 +17,11 @@ import java.io.IOException;
 public class ShowRecipe extends HttpServlet {
 
     private GenericDao<Recipe> dao = new GenericDao<>(Recipe.class);
+    private LoginTracker tracker = new LoginTracker();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO add unit to global session later
+        //TODO add unit to global
         Units units = new Units();
         request.setAttribute("units", units);
 

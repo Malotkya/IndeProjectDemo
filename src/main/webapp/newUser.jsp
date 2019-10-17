@@ -11,5 +11,8 @@
 <%@include file="jsp/topbar.jsp"%>
 
 <h2>Welcome</h2>
+<form>
+
+</form>
 
 <%@include file="jsp/footer.jsp"%>

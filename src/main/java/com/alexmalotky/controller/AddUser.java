@@ -22,4 +22,9 @@ public class AddUser extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/newUser.jsp");
         dispatcher.forward(request, response);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //TODO: Add user to database.
+    }
 }
