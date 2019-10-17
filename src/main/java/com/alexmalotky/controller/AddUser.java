@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static org.mindrot.jbcrypt.BCrypt.*;
-
 
 @WebServlet( urlPatterns = {"/NewUser"} )
 public class AddUser extends HttpServlet {

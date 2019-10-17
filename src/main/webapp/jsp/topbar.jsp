@@ -14,7 +14,7 @@
         <c:choose>
             <c:when test="${empty sessionScope.user}" >
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="modal" data-target="#loginModal">Log In</a>
+                    <a class="nav-link" href="Login">Log In</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="NewUser">Sign Up</a>
@@ -31,28 +31,3 @@
         </c:choose>
     </ul>
 </nav>
-
-<!-- Login Modal -->
-<form class="modal form" id="loginModal" ACTION="Login" METHOD="POST">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h4 class="modal-title">Login</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <div class="modal-body">
-                <label for="username">Username:</label>
-                <input type="text" name="j_username" id="username" class="form-control"/>
-                <label for="password">Password:</label>
-                <input type="password" name="j_password" id="password" class="form-control"/>
-            </div>
-
-            <div class="modal-footer">
-                <input type="submit" value="Login" class="btn btn-primary form-control" />
-            </div>
-
-        </div>
-    </div>
-</form>

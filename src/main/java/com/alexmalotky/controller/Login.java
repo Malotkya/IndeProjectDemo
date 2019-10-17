@@ -3,6 +3,8 @@ package com.alexmalotky.controller;
 
 import com.alexmalotky.entity.User;
 import com.alexmalotky.persistence.UserDao;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,31 +14,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
-import static org.mindrot.jbcrypt.BCrypt.*;
+import com.alexmalotky.util.LoginTracker;
 
 
 @WebServlet( urlPatterns = {"/Login"} )
 public class Login extends HttpServlet {
 
+    private final Logger logger = LogManager.getLogger(this.getClass());
+
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         UserDao dao = new UserDao();
+        User user = dao.getUserByUserName(request.getRemoteUser());
 
-        String user_name = request.getParameter("j_username");
-        String password = request.getParameter("j_password");
-
-        User user = dao.getUserByUserName(user_name);
-        if( user == null ) {
-            session.invalidate();
-        }
-        else {
-            if( checkpw(password, user.getPassword()) )
-                session.setAttribute("user", user);
-            else
-                session.invalidate();
-        }
+        session.setAttribute("user", user);
 
         response.sendRedirect(request.getHeader("referer"));
     }
