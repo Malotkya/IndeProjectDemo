@@ -21,3 +21,4 @@
 | 10/16 | 12:30 | 13:30 | Adding login button form demo | 1.00 |
 | 10/16 | 17:00 | 17:30 | Reviews for last week | 0.50 |
 | 10/16 | 19:00 | 20:00 | Fixed Encryption Issues | 1.00 |
+| 10/17 | 08:15 | | Adding new user form | |

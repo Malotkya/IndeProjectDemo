@@ -9,7 +9,8 @@ create table recipes (
     ingredients varchar(2000),
     directions varchar(2000),
     public bool,
-    user_id int
+    user_id int null,
+    constraint ownerConstraint foreign key(user_id) references users(id)
 );
 
 insert into recipes
