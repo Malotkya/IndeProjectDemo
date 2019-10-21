@@ -25,7 +25,16 @@ public class UserAccount extends HttpServlet {
         if(user == null)
             response.sendRedirect(request.getContextPath() + "/error.jsp");
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/userAccount.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/account.jsp");
         dispatcher.forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        String submitType = request.getParameter("submit");
+
+        //TODO: add stuff here
     }
 }

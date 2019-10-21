@@ -82,15 +82,6 @@ class UserDaoTest {
     }
 
     @Test
-    void testRemoveOldRecipe() {
-        User user = dao.getUserById(2);
-        Recipe recipe = user.getRecipes().iterator().next();
-
-        user.removeRecipe(recipe);
-        dao.update(user);
-    }
-
-    @Test
     void testFavorites() {
         User user = dao.getUserById(2);
 

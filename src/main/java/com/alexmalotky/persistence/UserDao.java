@@ -2,6 +2,7 @@ package com.alexmalotky.persistence;
 
 import com.alexmalotky.entity.Favorite;
 import com.alexmalotky.entity.Recipe;
+import com.alexmalotky.entity.Role;
 import com.alexmalotky.entity.User;
 import org.apache.logging.log4j.*;
 import org.hibernate.*;
@@ -53,7 +54,14 @@ public class UserDao{
         id = (int)session.save(user);
         transaction.commit();
         session.close();
+        giveUserRole(user);
         return id;
+    }
+
+    public void giveUserRole(User user) {
+        GenericDao<Role> dao = new GenericDao<>(Role.class);
+        Role r = new Role(user.getUserName(), "registered-user");
+        dao.insert(r);
     }
 
     public void update(User user){
@@ -65,16 +73,8 @@ public class UserDao{
     }
 
     public void delete(User user){
-        deleteFavorites(user);
         unLinkRecipes(user);
         deleteUser(user);
-    }
-
-    private void deleteFavorites(User user){
-        GenericDao<Favorite> dao = new GenericDao<>(Favorite.class);
-        List<Favorite> list = dao.findByPropertyEqual("user", user);
-        for(Favorite f: list)
-            dao.delete(f);
     }
 
     private void unLinkRecipes(User user) {

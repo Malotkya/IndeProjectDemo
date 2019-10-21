@@ -13,12 +13,20 @@ public class Favorite {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
-
     @ManyToOne
     private User user;
 
     @ManyToOne
     private Recipe recipe;
+
+    public Favorite() {
+    }
+
+    public Favorite(User user, Recipe recipe)
+    {
+        this.user = user;
+        this.recipe = recipe;
+    }
 
     public int getId() {
         return id;

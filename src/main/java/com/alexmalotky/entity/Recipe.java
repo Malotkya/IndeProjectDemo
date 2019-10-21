@@ -63,14 +63,19 @@ public class Recipe {
     public void setUser(User user){this.user = user;}
     public User getUser(){return user;}
 
-    public void setPublicView(Boolean publicView){this.publicView = publicView;}
-    public Boolean isPublicView(){return publicView;}
+    public Boolean getPublicView() {
+        return publicView;
+    }
+
+    public void setPublicView(Boolean publicView) {
+        this.publicView = publicView;
+    }
 
     public String getChecked() {
         if(publicView)
             return "checked";
         else
-            return "not-checked";
+            return "";
     }
 
 }

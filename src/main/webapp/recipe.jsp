@@ -11,6 +11,12 @@
 <script src="js/recipe.js"></script>
 
 <c:set var="isOwnedByUser" scope="page" value="${recipe.user.id == sessionScope.user.id}"/>
+<c:set var="isFavorite" scope="page" value="false" />
+<c:forEach var="item" items="${sessionScope.user.favorites}">
+    <c:if test="${item.id == recipe.id}">
+        <c:set var="isFavorite" scope="page" value="true" />
+    </c:if>
+</c:forEach>
 
 <form method="post" action="Recipe">
     <section class="row" >
@@ -31,7 +37,15 @@
                     <c:if test="${isOwnedByUser}">
                         <input type="button" id="edit" value="Edit" />
                     </c:if>
-                    <input type="submit" id="like" value="Like" />
+                    <c:choose>
+                        <c:when test="${isFavorite}">
+                            <input type="submit" id="like" value="Unlike" />
+                        </c:when>
+                        <c:otherwise>
+                            <input type="submit" id="like" value="Like" />
+                        </c:otherwise>
+                    </c:choose>
+
                 </span>
             </div>
 
@@ -45,7 +59,7 @@
                     <input type="text"id="editName" name="recipeName"  id="recipeName" value="${recipe.name}">
                     <br/>
                     <input type="checkbox" name="publicView"id="publicView" ${recipe.checked}>
-                    <label for="publicView">${recipe.checked}<!--Make this recipe public--></label>
+                    <label for="publicView">Make this recipe public</label>
                 </div>
             </c:if>
             <div class="w-100">

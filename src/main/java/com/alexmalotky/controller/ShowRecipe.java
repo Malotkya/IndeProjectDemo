@@ -1,9 +1,10 @@
 package com.alexmalotky.controller;
 
+import com.alexmalotky.entity.Favorite;
 import com.alexmalotky.entity.Recipe;
 import com.alexmalotky.entity.Units;
+import com.alexmalotky.entity.User;
 import com.alexmalotky.persistence.GenericDao;
-import com.alexmalotky.util.LoginTracker;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,13 +12,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.*;
 
 @WebServlet( urlPatterns = {"/Recipe"} )
 public class ShowRecipe extends HttpServlet {
 
     private GenericDao<Recipe> dao = new GenericDao<>(Recipe.class);
-    private LoginTracker tracker = new LoginTracker();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,29 +38,33 @@ public class ShowRecipe extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String submitType = request.getParameter("submit");
         int id = Integer.parseInt(request.getParameter("id"));
+        Recipe recipe = dao.getById(id);
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+
 
         switch (submitType) {
             case "Save":
-                performSave(request, id);
+                performSave(request, recipe);
                 response.sendRedirect(request.getContextPath() + "/Recipe?id=" + id);
                 break;
             case "Delete":
-                performDelete(id);
+                performDelete(recipe);
                 response.sendRedirect(request.getContextPath() + "/");
                 break;
             case "Like":
-                performLike(id);
+                performLike(user, recipe);
                 response.sendRedirect(request.getContextPath() + "/Recipe?id=" + id);
                 break;
             case "Unlike":
-                performUnlike(id);
+                performUnlike(user, recipe);
                 response.sendRedirect(request.getContextPath() + "/Recipe?id=" + id);
                 break;
         }
     }
 
-    private void performSave(HttpServletRequest request, int id) {
-        Recipe recipe = dao.getById(id);
+    private void performSave(HttpServletRequest request, Recipe recipe) {
+
         String newName = request.getParameter("recipeName");
         Boolean makePublic = Boolean.getBoolean(request.getParameter("publicView"));
         String newIngredients = request.getParameter("ingredients");
@@ -72,17 +78,31 @@ public class ShowRecipe extends HttpServlet {
         dao.saveOrUpdate(recipe);
     }
 
-    private void performDelete(int id) {
-        Recipe recipe = dao.getById(id);
+    private void performDelete(Recipe recipe) {
+
         dao.delete(recipe);
     }
 
-    private void performLike(int id) {
-        //TODO add recipe and user to liked table
+    private void performLike(User user, Recipe recipe) {
+
+        Favorite f = new Favorite(user, recipe);
+        GenericDao<Favorite> favDao = new GenericDao<>(Favorite.class);
+
+        favDao.insert(f);
     }
 
-    private void performUnlike(int id){
-        //TODO remove recipe and user from liked table
+    private void performUnlike(User user, Recipe recipe){
+
+        GenericDao<Favorite> favDao = new GenericDao<>(Favorite.class);
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("user", user);
+        map.put("recipe", recipe);
+
+        List<Favorite> list = favDao.findByPropertyEqual(map);
+
+        for(Favorite f: list)
+            favDao.delete(f);
     }
 }
 

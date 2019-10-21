@@ -27,6 +27,8 @@ const init = () => {
     //Add Event Listeners
     templateButton.addEventListener("click", addNewIngredient);
     btnSubmit.addEventListener("click", submit);
+    btnLike.addEventListener("click", submit);
+    btnDelete.addEventListener("click", submit);
     btnEdit.addEventListener("click", edit);
     btnCancel.addEventListener("click", show);
     document.querySelector("form").addEventListener("keypress", stopEnter)

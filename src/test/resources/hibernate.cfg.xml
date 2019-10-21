@@ -19,7 +19,7 @@
         <mapping class="com.alexmalotky.entity.User"/>
         <mapping class="com.alexmalotky.entity.Recipe"/>
         <mapping class="com.alexmalotky.entity.Favorite"/>
-
+        <mapping class="com.alexmalotky.entity.Role"/>
     </session-factory>
 
 </hibernate-configuration>
