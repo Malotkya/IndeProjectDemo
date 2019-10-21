@@ -21,3 +21,6 @@ With this app you can save recipes, plan out meals, and create shopping lists fo
 
 ### Code Coverage
 ![Persistence Code Coverage](docs/images/codeCoverage.PNG)
+
+### AWS
+![AWS Screenshot](docs/images/aws.png)
