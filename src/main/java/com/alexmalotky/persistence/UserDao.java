@@ -67,7 +67,7 @@ public class UserDao{
     public void update(User user){
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        session.update(user);
+        session.saveOrUpdate(user);
         transaction.commit();
         session.close();
     }

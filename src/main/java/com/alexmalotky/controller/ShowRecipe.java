@@ -2,9 +2,10 @@ package com.alexmalotky.controller;
 
 import com.alexmalotky.entity.Favorite;
 import com.alexmalotky.entity.Recipe;
-import com.alexmalotky.entity.Units;
 import com.alexmalotky.entity.User;
 import com.alexmalotky.persistence.GenericDao;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,15 +21,26 @@ import java.util.*;
 public class ShowRecipe extends HttpServlet {
 
     private GenericDao<Recipe> dao = new GenericDao<>(Recipe.class);
+    private final Logger logger = LogManager.getLogger(this.getClass());
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO add unit to global
-        Units units = new Units();
-        request.setAttribute("units", units);
-
         int id = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("recipe", dao.getById(id));
+        Recipe r = dao.getById(id);
+        User user = (User)request.getSession().getAttribute("user");
+        boolean favorite = false;
+
+        if(user != null)
+            favorite = user.getFavorites().contains(r);
+
+        if(favorite)
+            logger.debug(user.getUserName() + " likes " + r.getName());
+        else
+            logger.debug("Not a favorite.");
+
+        request.setAttribute("recipe", r);
+        request.setAttribute("isFavorite", favorite);
+
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/recipe.jsp");
         dispatcher.forward(request, response);
@@ -88,7 +100,9 @@ public class ShowRecipe extends HttpServlet {
         Favorite f = new Favorite(user, recipe);
         GenericDao<Favorite> favDao = new GenericDao<>(Favorite.class);
 
+
         favDao.insert(f);
+        user.getFavorites().add(recipe);
     }
 
     private void performUnlike(User user, Recipe recipe){
@@ -103,6 +117,8 @@ public class ShowRecipe extends HttpServlet {
 
         for(Favorite f: list)
             favDao.delete(f);
+
+        user.getFavorites().remove(recipe);
     }
 }
 

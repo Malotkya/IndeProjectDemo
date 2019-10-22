@@ -2,6 +2,7 @@ package com.alexmalotky.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity(name = "Recipe")
 @Table(name = "recipes")
@@ -78,4 +79,16 @@ public class Recipe {
             return "";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Recipe)) return false;
+        Recipe recipe = (Recipe) o;
+        return id == recipe.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

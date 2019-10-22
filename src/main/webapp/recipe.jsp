@@ -11,12 +11,6 @@
 <script src="js/recipe.js"></script>
 
 <c:set var="isOwnedByUser" scope="page" value="${recipe.user.id == sessionScope.user.id}"/>
-<c:set var="isFavorite" scope="page" value="false" />
-<c:forEach var="item" items="${sessionScope.user.favorites}">
-    <c:if test="${item.id == recipe.id}">
-        <c:set var="isFavorite" scope="page" value="true" />
-    </c:if>
-</c:forEach>
 
 <form method="post" action="Recipe">
     <section class="row" >
@@ -84,12 +78,12 @@
                     <select id='newUnit'>
                         <option value=""> </option>
                         <option disabled>Volumes</option>
-                        <c:forEach items="${units.volumes}" var="volume">
+                        <c:forEach items="${applicationScope['units'].volumes}" var="volume">
                             <option value="${volume.code}">${volume.name}</option>
                         </c:forEach>
 
                         <option disabled>Weights</option>
-                        <c:forEach items="${units.weights}" var="weight">
+                        <c:forEach items="${applicationScope['units'].weights}" var="weight">
                             <option value="${weight.code}">${weight.name}</option>
                         </c:forEach>
                     </select>

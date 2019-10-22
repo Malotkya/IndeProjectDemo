@@ -3,6 +3,8 @@ package com.alexmalotky.persistence;
 import com.alexmalotky.entity.Recipe;
 import com.alexmalotky.entity.User;
 import com.alexmalotky.util.Database;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class RecipeDaoTest {
 
     private GenericDao<Recipe> dao = new GenericDao<>(Recipe.class);
+    private final Logger logger = LogManager.getLogger(this.getClass());
 
     @BeforeEach
     void setUp() {
