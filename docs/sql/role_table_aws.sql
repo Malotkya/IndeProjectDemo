@@ -14,6 +14,3 @@ insert into roles values( 1, "administrator", "ajmalotky", 2);
 update users
 set user_name = "ajmalotky", password = "$2a$10$jESJRbXmyrANHXsmxqeSM.4.pINwRnb7VOw0e6iiXqcLAl2EEP9Y."
 where id = 2;
-
-/*CREATE USER 'tomcat'@'localhost' IDENTIFIED BY 'Zim563';
-GRANT SELECT ON IndeProject.* to 'tomcat'@'localhost';*/

@@ -19,6 +19,7 @@
         </figure>
         <div class="col">
 
+            <c:if test="${sessionScope.user != null}">
             <div class="float-right">
                 <c:if test="${isOwnedByUser}">
                     <span class="edit">
@@ -42,6 +43,7 @@
 
                 </span>
             </div>
+            </c:if>
 
             <div class="initial">
                 <h2 id="displayName" >${recipe.name}</h2>
