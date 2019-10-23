@@ -9,7 +9,33 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="jsp/header.jsp"%>
 <%@include file="jsp/topbar.jsp"%>
+<main data-spy="scroll" data-target="#scroll-nav" data-offset="50">
+    <ul class="nav flex-column" id="scroll-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#favs">View Favorites</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#planner">Weekly Planer</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#list">Shopping List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="NewRecipe">New Recipe</a>
+        </li>
+    </ul>
 
-<h1>${sessionScope.user}</h1>
+    <div class="container" id="favs">
+        <%@include file="jsp/favorites.jsp"%>
+    </div>
 
+    <div class="container" id="planner">
+        <%@include file="jsp/weekly.jsp"%>
+    </div>
+
+    <div class="container" id="list">
+        <%@include file="jsp/shopingList.jsp"%>
+    </div>
+
+</main>
 <%@include file="jsp/footer.jsp"%>

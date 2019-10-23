@@ -24,6 +24,8 @@ public class Logout extends HttpServlet {
     }
 
     private void killSession(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        request.logout();
+
         HttpSession session = request.getSession();
         session.invalidate();
 

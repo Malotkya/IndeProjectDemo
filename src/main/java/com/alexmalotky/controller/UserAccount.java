@@ -2,18 +2,18 @@ package com.alexmalotky.controller;
 
 import com.alexmalotky.entity.User;
 import com.alexmalotky.persistence.UserDao;
+import com.alexmalotky.util.LoginServlet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet( urlPatterns = {"/Account"} )
-public class UserAccount extends HttpServlet {
+public class UserAccount extends LoginServlet {
 
     private UserDao dao = new UserDao();
 

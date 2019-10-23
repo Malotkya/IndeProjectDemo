@@ -1,6 +1,5 @@
 let templateSelect, templateNumber, templateText, templateButton = {};
 let ingredients, directions, ingredientsList, directionsList, directionsInput = {};
-let btnEdit, btnSubmit, btnCancel, btnDelete, btnLike = {};
 
 const init = () => {
     //Used for displaying elements.
@@ -16,22 +15,16 @@ const init = () => {
     templateText = document.getElementById("newIngredient");
     templateButton = document.getElementById("addNewIngredient");
 
-    btnSubmit = document.getElementById("submit");
-    btnEdit = document.getElementById("edit");
-    btnCancel = document.getElementById("cancel");
-    btnDelete = document.getElementById("delete");
-    btnLike = document.getElementById("like");
-
     show();
 
     //Add Event Listeners
-    templateButton.addEventListener("click", addNewIngredient);
-    btnSubmit.addEventListener("click", submit);
-    btnLike.addEventListener("click", submit);
-    btnDelete.addEventListener("click", submit);
-    btnEdit.addEventListener("click", edit);
-    btnCancel.addEventListener("click", show);
-    document.querySelector("form").addEventListener("keypress", stopEnter)
+    addEvent(templateButton, "click", addNewIngredient);
+    addEvent(document.getElementById("submit"), "click", submit);
+    addEvent(document.getElementById("like"), "click", submit);
+    addEvent(document.getElementById("delete"), "click", submit);
+    addEvent(document.getElementById("edit"), "click", edit);
+    addEvent(document.getElementById("cancel"), "click", show);
+    addEvent(document.querySelector("form"), "keypress", stopEnter);
 }; window.onload = init;
 
 const show = () => {
@@ -56,10 +49,7 @@ const show = () => {
 };
 
 const displayText = value => {
-    console.log(value);
     let list = JSON.parse(value);
-
-    console.log(list);
 
     return list.amount + " " + list.unit + ": " + list.item;
 };
@@ -106,32 +96,30 @@ const buildAll = (amount, unit, item) => {
 };
 
 const buildSelect = value => {
-    let unit = templateSelect.cloneNode(true);
-    unit.removeAttribute("id");
-    unit.setAttribute("class", "unit");
+    let node = templateSelect.cloneNode(true);
+    node.removeAttribute("id");
+    node.setAttribute("class", "unit");
 
-    unit.value = value;
-
-    return unit;
+    node.value = value;
+    return node;
 };
 
 const buildNumber = value => {
-    let unit = templateNumber.cloneNode(true);
-    unit.removeAttribute("id");
-    unit.setAttribute("class", "amount");
+    let node = templateNumber.cloneNode(true);
+    node.removeAttribute("id");
+    node.setAttribute("class", "amount");
 
-    unit.value = value;
-    return unit;
+    node.value = value;
+    return node;
 };
 
 const buildText = value => {
-    let unit = templateText.cloneNode(true);
-    unit.removeAttribute("id");
-    unit.setAttribute("class", "value");
+    let node = templateText.cloneNode(true);
+    node.removeAttribute("id");
+    node.setAttribute("class", "value");
 
-
-    unit.value = value;
-    return unit;
+    node.value = value;
+    return node;
 };
 
 const buildButton = value => {
@@ -194,10 +182,16 @@ const buildDirectionsJson = () => {
 const submit = event => {
     event.currentTarget.setAttribute("name", "submit");
 
-    if(event.currentTarget.value == "Save");
+    if(event.currentTarget.value === "Save");
         buildJson();
-}
+};
 
+const addEvent = (obj, eType, callback) => {
+    if(obj && obj !== 'null' && obj !== 'undefined')
+        obj.addEventListener(eType, callback);
+};
+
+//TODO get form to stop submitting on hitting enter
 const stopEnter = e => {
     e = e || event;
     return (e.keyCode || e.which || e.charCode || 0) !== 13;

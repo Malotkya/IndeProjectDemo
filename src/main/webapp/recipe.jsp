@@ -8,13 +8,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="jsp/header.jsp"%>
 <%@include file="jsp/topbar.jsp"%>
-<script src="js/recipe.js"></script>
 
 <c:set var="isOwnedByUser" scope="page" value="${recipe.user.id == sessionScope.user.id}"/>
 
 <form method="post" action="Recipe">
     <section class="row" >
         <figure class="col-sm-6 col-md-4 col-lg-3" >
+            <!-- Looking to add future support to user added images -->
             <img alt="A picture will go here" src="img/0.jpg" class=" img-fluid img-thumbnail mx-auto d-block"/>
         </figure>
         <div class="col">
@@ -104,4 +104,6 @@
         </c:if>
     </section><br />
 </form>
+
+<script src="js/recipe.js"></script>
 <%@include file="jsp/footer.jsp"%>

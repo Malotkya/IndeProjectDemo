@@ -3,6 +3,7 @@ package com.alexmalotky.controller;
 
 import com.alexmalotky.entity.User;
 import com.alexmalotky.persistence.UserDao;
+import com.alexmalotky.util.LoginServlet;
 import org.apache.catalina.realm.MessageDigestCredentialHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,7 +19,7 @@ import java.security.NoSuchAlgorithmException;
 
 
 @WebServlet( urlPatterns = {"/NewUser"} )
-public class AddUser extends HttpServlet {
+public class AddUser extends LoginServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     private UserDao dao = new UserDao();
