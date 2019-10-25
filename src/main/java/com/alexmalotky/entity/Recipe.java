@@ -1,5 +1,6 @@
 package com.alexmalotky.entity;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Objects;
@@ -29,13 +30,21 @@ public class Recipe {
     private User user;
 
     public Recipe() {
-        user = new User();
+
     }
 
     public Recipe(String name, String ingredients, String directions) {
         this.name = name;
         this.ingredients = ingredients;
         this.directions = directions;
+    }
+
+    public Recipe(String name, User user){
+        this.name = name;
+        this.user = user;
+        this.ingredients = "[]";
+        this.directions = "[]";
+        this.publicView = false;
     }
 
     @Override
@@ -73,6 +82,7 @@ public class Recipe {
     }
 
     public String getChecked() {
+
         if(publicView)
             return "checked";
         else

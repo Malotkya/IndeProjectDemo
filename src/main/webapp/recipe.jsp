@@ -59,7 +59,7 @@
                 </div>
             </c:if>
             <div class="w-100">
-                I hope to have tags added eventually
+                <!--I hope to have tags added eventually-->
             </div>
         </div>
 

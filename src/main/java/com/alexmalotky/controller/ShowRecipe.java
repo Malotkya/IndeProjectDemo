@@ -81,12 +81,15 @@ public class ShowRecipe extends LoginServlet {
     private void performSave(HttpServletRequest request, Recipe recipe) {
 
         String newName = request.getParameter("recipeName");
-        Boolean makePublic = Boolean.getBoolean(request.getParameter("publicView"));
+        String publicView = request.getParameter("publicView");
         String newIngredients = request.getParameter("ingredients");
         String newDirections = request.getParameter("directions");
 
+        if(publicView == null)
+            publicView = "off";
+
         recipe.setName(newName);
-        recipe.setPublicView(makePublic);
+        recipe.setPublicView(publicView.equals("on"));
         recipe.setIngredients(newIngredients);
         recipe.setDirections(newDirections);
 
