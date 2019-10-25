@@ -13,6 +13,9 @@ create table recipes (
     constraint ownerConstraint foreign key(user_id) references users(id)
 );
 
+alter table recipes
+alter column public set default false;
+
 insert into recipes
 values(
 	1,
