@@ -3,6 +3,7 @@ package com.alexmalotky.controller;
 import com.alexmalotky.entity.User;
 import com.alexmalotky.persistence.UserDao;
 import com.alexmalotky.util.LoginServlet;
+import com.alexmalotky.util.NotLoggedInException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,11 +20,15 @@ public class UserAccount extends LoginServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User user = (User)session.getAttribute("user");
 
-        if(user == null)
+        try
+        {
+            getLoggedInUser(request);
+        }
+        catch (NotLoggedInException e)
+        {
             response.sendRedirect(request.getContextPath() + "/error.jsp");
+        }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/account.jsp");
         dispatcher.forward(request, response);

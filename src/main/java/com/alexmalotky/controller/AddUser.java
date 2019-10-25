@@ -1,6 +1,5 @@
 package com.alexmalotky.controller;
 
-
 import com.alexmalotky.entity.User;
 import com.alexmalotky.persistence.UserDao;
 import com.alexmalotky.util.LoginServlet;

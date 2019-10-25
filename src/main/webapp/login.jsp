@@ -33,12 +33,4 @@
         </div>
     </div>
 </form>
-<c:if test="false">
-    <script type="javascript">
-        const init = () => {
-            document.querySelector("form").submit();
-        };
-        window.onLoad = init;
-    </script>
-</c:if>
 <%@include file="jsp/footer.jsp"%>

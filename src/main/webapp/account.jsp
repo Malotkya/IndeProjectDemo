@@ -9,33 +9,35 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="jsp/header.jsp"%>
 <%@include file="jsp/topbar.jsp"%>
-<main data-spy="scroll" data-target="#scroll-nav" data-offset="50">
-    <ul class="nav flex-column" id="scroll-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="#favs">View Favorites</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#planner">Weekly Planer</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#list">Shopping List</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="NewRecipe">New Recipe</a>
-        </li>
-    </ul>
 
-    <div class="container" id="favs">
+<div class="row">
+<ul class="nav flex-column col-3">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#favs">View Favorites</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#planner">Weekly Planner</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#list">Shopping List</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="NewRecipe">New Recipe</a>
+    </li>
+</ul>
+
+<main class="tab-content col-9">
+    <div class="tab-pane fade show active d-hidden" id="favs">
         <%@include file="jsp/favorites.jsp"%>
     </div>
 
-    <div class="container" id="planner">
+    <div class="tab-pane fade d-hidden" id="planner">
         <%@include file="jsp/weekly.jsp"%>
     </div>
 
-    <div class="container" id="list">
-        <%@include file="jsp/shopingList.jsp"%>
+    <div class="tab-pane fade d-hidden" id="list">
+        <%@include file="jsp/shoppingList.jsp"%>
     </div>
-
 </main>
+</div>
 <%@include file="jsp/footer.jsp"%>
