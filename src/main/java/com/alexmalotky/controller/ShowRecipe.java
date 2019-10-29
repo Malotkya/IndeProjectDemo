@@ -66,7 +66,7 @@ public class ShowRecipe extends LoginServlet {
                     performUnlike(user, recipe);
                     response.sendRedirect(request.getContextPath() + "/Recipe?id=" + id);
                     break;
-                default:
+                case "Like":
                     performLike(user, recipe);
                     response.sendRedirect(request.getContextPath() + "/Recipe?id=" + id);
                     break;
@@ -79,7 +79,6 @@ public class ShowRecipe extends LoginServlet {
     }
 
     private void performSave(HttpServletRequest request, Recipe recipe) {
-
         String newName = request.getParameter("recipeName");
         String publicView = request.getParameter("publicView");
         String newIngredients = request.getParameter("ingredients");
@@ -101,7 +100,6 @@ public class ShowRecipe extends LoginServlet {
     }
 
     private void performLike(User user, Recipe recipe) {
-
         Favorite f = new Favorite(user, recipe);
         GenericDao<Favorite> favDao = new GenericDao<>(Favorite.class);
         favDao.insert(f);
@@ -110,6 +108,7 @@ public class ShowRecipe extends LoginServlet {
     private void performUnlike(User user, Recipe recipe){
 
         GenericDao<Favorite> favDao = new GenericDao<>(Favorite.class);
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("user", user);

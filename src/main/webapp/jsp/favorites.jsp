@@ -9,7 +9,7 @@
         </h3>
     </c:when>
     <c:otherwise>
-        <ul class="table table-striped">
+        <ul>
             <c:forEach var="recipe" items="${sessionScope.user.favorites}">
                 <li class="row">
                     <a href="Recipe?id=${recipe.id}" class="col-9 row">
@@ -18,8 +18,10 @@
                         </figure>
                         <h3 class="col-9">${recipe.name}</h3>
                     </a>
-                    <a href="Unlike?=${recipe.id}" class="col">Unlike</a>
-
+                    <form action="Account" method="post" class="col confirm">
+                        <input type="hidden" name="id" value="${recipe.id}"/>
+                        <input type="submit" name="submit" value="Unlike" class="btn btn-danger">
+                    </form>
                 </li>
             </c:forEach>
         </ul>
