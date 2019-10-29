@@ -1,5 +1,5 @@
-let templateSelect, templateNumber, templateText, templateButton = {};
-let ingredients, directions, ingredientsList, directionsList, directionsInput = {};
+let templateSelect, templateNumber, templateText, templateButton, ingredients, directions, ingredientsList,
+    directionsList, directionsInput;
 
 const init = () => {
     //Used for displaying elements.
@@ -24,7 +24,8 @@ const init = () => {
     addEvent(document.getElementById("delete"), "click", submit);
     addEvent(document.getElementById("edit"), "click", edit);
     addEvent(document.getElementById("cancel"), "click", show);
-    addEvent(document.querySelector("form"), "keypress", stopEnter);
+
+    document.querySelector("form").onsubmit = validate;
 }; window.onload = init;
 
 const show = () => {
@@ -98,7 +99,7 @@ const buildAll = (amount, unit, item) => {
 const buildSelect = value => {
     let node = templateSelect.cloneNode(true);
     node.removeAttribute("id");
-    node.setAttribute("class", "unit");
+    node.setAttribute("class", "unit m-1");
 
     node.value = value;
     return node;
@@ -107,7 +108,7 @@ const buildSelect = value => {
 const buildNumber = value => {
     let node = templateNumber.cloneNode(true);
     node.removeAttribute("id");
-    node.setAttribute("class", "amount");
+    node.setAttribute("class", "amount m-1");
 
     node.value = value;
     return node;
@@ -116,19 +117,20 @@ const buildNumber = value => {
 const buildText = value => {
     let node = templateText.cloneNode(true);
     node.removeAttribute("id");
-    node.setAttribute("class", "value");
+    node.setAttribute("class", "value m-1");
 
     node.value = value;
     return node;
 };
 
 const buildButton = value => {
-    let unit = templateButton.cloneNode(true);
-    unit.removeAttribute("id");
-    unit.addEventListener("click", deleteIngredient);
+    let node = templateButton.cloneNode(true);
+    node.removeAttribute("id");
+    node.addEventListener("click", deleteIngredient);
+    node.setAttribute("class", "btn btn-danger m-1");
 
-    unit.innerText = value;
-    return unit;
+    node.innerText = value;
+    return node;
 };
 
 const addNewIngredient = () => {
@@ -180,10 +182,19 @@ const buildDirectionsJson = () => {
 };
 
 const submit = event => {
-    event.currentTarget.setAttribute("name", "submit");
+    let submit = true;
 
-    if(event.currentTarget.value === "Save");
+    if(event.currentTarget.value === "Save") {
         buildJson();
+    } else if (event.currentTarget.value === "Delete") {
+        if( !window.confirm("Are you sure you want to delete this recipe?") ) {
+            submit = false;
+        }
+    }
+
+    if(submit) {
+        event.currentTarget.setAttribute("name", "submit");
+    }
 };
 
 const addEvent = (obj, eType, callback) => {
@@ -192,7 +203,17 @@ const addEvent = (obj, eType, callback) => {
 };
 
 //TODO get form to stop submitting on hitting enter
-const stopEnter = e => {
-    e = e || event;
-    return (e.keyCode || e.which || e.charCode || 0) !== 13;
+const validate = () => {
+    let allNodes = document.querySelector("form").querySelectorAll("input");
+
+    for(let n = 0; n<allNodes.length; n++){
+
+        let list = allNodes[n].attributes;
+        for(let i=0; i<list.length; i++) {
+            if(list[i].name === "name" && list[i].value === "submit")
+                return true;
+        }
+    }
+
+    return false;
 };

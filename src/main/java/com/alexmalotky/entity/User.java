@@ -2,7 +2,6 @@ package com.alexmalotky.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.ejb.Local;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;

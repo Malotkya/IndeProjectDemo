@@ -20,24 +20,24 @@
         <div class="col">
 
             <c:if test="${sessionScope.user != null}">
-            <div class="float-right">
+            <div class="float-right mt-1">
                 <c:if test="${isOwnedByUser}">
                     <span class="edit">
-                        <input type="submit" id="submit" value="Save" />
-                        <input type="button" id="cancel" value="Cancel" />
-                        <input type="submit" id="delete" value="Delete" />
+                        <input type="submit" id="submit" value="Save" class="btn btn-success"/>
+                        <input type="button" id="cancel" value="Cancel" class="btn btn-secondary"/>
+                        <input type="submit" id="delete" value="Delete" class="btn btn-danger"/>
                     </span>
                 </c:if>
                 <span class="initial">
                     <c:if test="${isOwnedByUser}">
-                        <input type="button" id="edit" value="Edit" />
+                        <input type="button" id="edit" value="Edit" class="btn btn-primary"/>
                     </c:if>
                     <c:choose>
                         <c:when test="${isFavorite}">
-                            <input type="submit" id="like" value="Unlike" />
+                            <input type="submit" id="like" value="Unlike" class="btn btn-primary"/>
                         </c:when>
                         <c:otherwise>
-                            <input type="submit" id="like" value="Like" />
+                            <input type="submit" id="like" value="Like" class="btn btn-primary"/>
                         </c:otherwise>
                     </c:choose>
 
@@ -76,8 +76,8 @@
         <c:if test="${isOwnedByUser}">
             <div class="pr-15 pl-0 col-12 edit">
                 <div class="list-group-item">
-                    <input type="text" id="newAmount"/>
-                    <select id='newUnit'>
+                    <input type="text" id="newAmount" class="m-1"/><select
+                        id='newUnit' class="m-1">
                         <option value=""> </option>
                         <option disabled>Volumes</option>
                         <c:forEach items="${applicationScope['units'].volumes}" var="volume">
@@ -88,9 +88,9 @@
                         <c:forEach items="${applicationScope['units'].weights}" var="weight">
                             <option value="${weight.code}">${weight.name}</option>
                         </c:forEach>
-                    </select>
-                    <input type="text" id="newIngredient" />
-                    <button type="button" id="addNewIngredient">Add</button>
+                    </select><input
+                        type="text" id="newIngredient" class="m-1"/><button
+                        type="button" id="addNewIngredient" class="m-1 btn btn-primary">Add</button>
                 </div>
             </div>
         </c:if>
