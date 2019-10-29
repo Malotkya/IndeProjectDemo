@@ -11,9 +11,22 @@
 <%@include file="jsp/topbar.jsp"%>
 
 <div class="row">
-<ul class="nav flex-column col-3">
+<ul class="nav nav-pills flex-column col-3">
     <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#favs">View Favorites</a>
+        <h2>Recipe</h2>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#favs">Favorite Recipes</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#owned">My Recipes</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="NewRecipe">New Recipe</a>
+    </li>
+
+    <li class="nav-item">
+        <h2>Planning</h2>
     </li>
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#planner">Weekly Planner</a>
@@ -21,23 +34,37 @@
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#list">Shopping List</a>
     </li>
+
     <li class="nav-item">
-        <a class="nav-link" href="NewRecipe">New Recipe</a>
+        <h2>Settings</h2>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#settings">Account Settings</a>
     </li>
 </ul>
 
 <main class="tab-content col-9">
-    <div class="tab-pane fade show active d-hidden" id="favs">
+    <article class="tab-pane fade show active d-hidden" id="favs">
         <%@include file="jsp/favorites.jsp"%>
-    </div>
+    </article>
 
-    <div class="tab-pane fade d-hidden" id="planner">
+    <article class="tab-pane fade d-hidden" id="owned">
+        <%@include file="jsp/myRecipes.jsp"%>
+    </article>
+
+    <article class="tab-pane fade d-hidden" id="planner">
         <%@include file="jsp/weekly.jsp"%>
-    </div>
+    </article>
 
-    <div class="tab-pane fade d-hidden" id="list">
+    <article class="tab-pane fade d-hidden" id="list">
         <%@include file="jsp/shoppingList.jsp"%>
-    </div>
+    </article>
+
+    <article class="tab-pane fade d-hidden" id="settings">
+        <%@include file="jsp/settings.jsp"%>
+    </article>
 </main>
 </div>
+
+<script src="js/account.js"></script>
 <%@include file="jsp/footer.jsp"%>

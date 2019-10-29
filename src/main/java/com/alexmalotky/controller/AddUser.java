@@ -3,7 +3,7 @@ package com.alexmalotky.controller;
 import com.alexmalotky.entity.User;
 import com.alexmalotky.persistence.UserDao;
 import com.alexmalotky.util.LoginServlet;
-import org.apache.catalina.realm.MessageDigestCredentialHandler;
+import com.alexmalotky.util.PasswordManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 
 
 @WebServlet( urlPatterns = {"/NewUser"} )
@@ -39,18 +38,7 @@ public class AddUser extends LoginServlet {
 
         User user = new User(firstName, lastName, username, email);
 
-        MessageDigestCredentialHandler credentialHandler = new MessageDigestCredentialHandler();
-
-        try {
-            credentialHandler.setAlgorithm("sha-256");
-        } catch (NoSuchAlgorithmException e) {
-            logger.debug(e);
-        }
-
-        credentialHandler.setEncoding("UTF-8");
-        String hashedPassword = credentialHandler.mutate(password);
-
-        user.setPassword(hashedPassword);
+        user.setPassword(PasswordManager.hash(password));
         dao.insert(user);
 
         login(username, password, request);
