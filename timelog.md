@@ -22,4 +22,5 @@
 | 10/16 | 17:00 | 17:30 | Reviews for last week | 0.50 |
 | 10/16 | 19:00 | 20:00 | Fixed Encryption Issues | 1.00 |
 | 10/17 | 08:15 | 10:00 | Adding new user form | 1.75 |
-| 10/30 | 09:00 | | Working on indie-project and this weeks energizes | |
+| 10/30 | 09:00 | 14:00| Working on indie-project and this weeks energizes | 5.00 |
+| 10/31 | 09:00 | 11:15 | Team Project work time | 2.25 |
