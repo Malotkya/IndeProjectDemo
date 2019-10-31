@@ -11,7 +11,7 @@
 <%@include file="jsp/topbar.jsp"%>
 
 <div class="row">
-<ul class="nav nav-pills flex-column col-3">
+<ul class="nav nav-pills flex-flex col-12 col-md-2">
     <li class="nav-item">
         <h2>Recipe</h2>
     </li>
@@ -43,7 +43,7 @@
     </li>
 </ul>
 
-<main class="tab-content col-9">
+<main class="tab-content col">
     <article class="tab-pane fade show active d-hidden" id="favs">
         <%@include file="jsp/favorites.jsp"%>
     </article>
