@@ -4,6 +4,7 @@ import com.alexmalotky.entity.Favorite;
 import com.alexmalotky.entity.Recipe;
 import com.alexmalotky.entity.User;
 import com.alexmalotky.persistence.GenericDao;
+import com.alexmalotky.persistence.FavoriteKey;
 import com.alexmalotky.util.LoginServlet;
 import com.alexmalotky.util.NotLoggedInException;
 import org.apache.logging.log4j.LogManager;
@@ -100,21 +101,17 @@ public class ShowRecipe extends LoginServlet {
     }
 
     private void performLike(User user, Recipe recipe) {
-        Favorite f = new Favorite(user, recipe);
         GenericDao<Favorite> favDao = new GenericDao<>(Favorite.class);
-        favDao.insert(f);
+        favDao.insert(new Favorite(user, recipe));
     }
 
     private void performUnlike(User user, Recipe recipe){
 
         GenericDao<Favorite> favDao = new GenericDao<>(Favorite.class);
 
-        Map<String, Object> map = new HashMap<>();
+        FavoriteKey key = new FavoriteKey(user, recipe);
 
-        map.put("user", user);
-        map.put("recipe", recipe);
-
-        List<Favorite> list = favDao.findByPropertyEqual(map);
+        List<Favorite> list = favDao.findByPropertyEqual(key.generateMap());
 
         for(Favorite f: list)
             favDao.delete(f);

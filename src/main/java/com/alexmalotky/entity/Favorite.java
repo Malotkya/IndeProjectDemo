@@ -1,21 +1,19 @@
 package com.alexmalotky.entity;
 
-import org.hibernate.annotations.GenericGenerator;
+import com.alexmalotky.persistence.FavoriteKey;
 
 import javax.persistence.*;
 
 @Entity(name = "Favorite")
 @Table(name = "favorites")
+@IdClass(FavoriteKey.class)
 public class Favorite {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
-    private int id;
-
     @ManyToOne
     private User user;
 
+    @Id
     @ManyToOne
     private Recipe recipe;
 
@@ -26,14 +24,6 @@ public class Favorite {
     {
         this.user = user;
         this.recipe = recipe;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public User getUser() {

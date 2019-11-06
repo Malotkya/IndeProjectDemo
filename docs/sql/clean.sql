@@ -29,4 +29,4 @@ values(
 );
 
 insert into favorites
-values( 1, 1, 1 );
+values( 1, 1 );
