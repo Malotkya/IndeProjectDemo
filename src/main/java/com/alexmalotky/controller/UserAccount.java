@@ -5,6 +5,7 @@ import com.alexmalotky.entity.Recipe;
 import com.alexmalotky.entity.User;
 import com.alexmalotky.persistence.GenericDao;
 import com.alexmalotky.persistence.UserDao;
+import com.alexmalotky.persistence.FavoriteKey;
 import com.alexmalotky.util.LoginServlet;
 import com.alexmalotky.util.NotLoggedInException;
 import com.alexmalotky.util.PasswordManager;
@@ -17,9 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet( urlPatterns = {"/Account"} )
 public class UserAccount extends LoginServlet {
@@ -28,7 +27,6 @@ public class UserAccount extends LoginServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         try
         {
             getLoggedInUser(request);
@@ -38,12 +36,21 @@ public class UserAccount extends LoginServlet {
             response.sendRedirect(request.getContextPath() + "/error.jsp");
         }
 
+        String show = request.getParameter("show");
+        if(show == null)
+            show = "favs";
+
+        request.setAttribute( show+"Btn", "active");
+        request.setAttribute(show+"Pane", "show active");
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/account.jsp");
         dispatcher.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String redirect = "";
+
         try
         {
             User user = getLoggedInUser(request);
@@ -52,15 +59,19 @@ public class UserAccount extends LoginServlet {
             switch (submitType) {
                 case "Delete":
                     deleteRecipe(request);
+                    redirect = "owned";
                     break;
                 case "Unlike":
                     unLikeRecipe(user, request);
+                    redirect = "favs";
                     break;
                 case "Update":
                     updateUser(user, request);
+                    redirect = "settings";
                     break;
                 case "Change Password":
                     changePassword(user, request);
+                    redirect = "settings";
                     break;
             }
         }
@@ -69,11 +80,11 @@ public class UserAccount extends LoginServlet {
             logger.error("Invalid request from: " + request.getRemoteAddr());
         }
 
-        response.sendRedirect(request.getContextPath() + "/Account");
+        response.sendRedirect(request.getContextPath() + "/Account?show=" + redirect);
     }
 
     private void deleteRecipe(HttpServletRequest request) {
-        GenericDao<Recipe> recipeDao = new GenericDao<Recipe>(Recipe.class);
+        GenericDao<Recipe> recipeDao = new GenericDao<>(Recipe.class);
         int id = Integer.parseInt(request.getParameter("id"));
         Recipe r = recipeDao.getById(id);
         recipeDao.delete(r);
@@ -81,16 +92,14 @@ public class UserAccount extends LoginServlet {
 
     private void unLikeRecipe(User user, HttpServletRequest request) {
         GenericDao<Favorite> favDao = new GenericDao<>(Favorite.class);
-        GenericDao<Recipe> recipeDao = new GenericDao<Recipe>(Recipe.class);
+        GenericDao<Recipe> recipeDao = new GenericDao<>(Recipe.class);
 
         int id = Integer.parseInt(request.getParameter("id"));
         Recipe recipe = recipeDao.getById(id);
-        Map<String, Object> map = new HashMap<>();
 
-        map.put("user", user);
-        map.put("recipe", recipe);
+        FavoriteKey key = new FavoriteKey(user, recipe);
 
-        List<Favorite> list = favDao.findByPropertyEqual(map);
+        List<Favorite> list = favDao.findByPropertyEqual(key.generateMap());
 
         for(Favorite f: list)
             favDao.delete(f);

@@ -15,52 +15,52 @@
     <li class="nav-item">
         <h2>Recipe</h2>
     </li>
-    <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#favs">Favorite Recipes</a>
+    <li class="nav-item ">
+        <a class="nav-link ${favsBtn}" data-toggle="tab" href="#favs">Favorite Recipes</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#owned">My Recipes</a>
+        <a class="nav-link ${ownedBtn}" data-toggle="tab" href="#owned">My Recipes</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="NewRecipe">New Recipe</a>
+        <a class="nav-link " href="NewRecipe">New Recipe</a>
     </li>
 
     <li class="nav-item">
         <h2>Planning</h2>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#planner">Weekly Planner</a>
+        <a class="nav-link ${plannerBtn}" data-toggle="tab" href="#planner">Weekly Planner</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#list">Shopping List</a>
+        <a class="nav-link ${listBtn}" data-toggle="tab" href="#list">Shopping List</a>
     </li>
 
     <li class="nav-item">
         <h2>Settings</h2>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#settings">Account Settings</a>
+        <a class="nav-link ${settingsBtn}" data-toggle="tab" href="#settings">Account Settings</a>
     </li>
 </ul>
 
 <main class="tab-content col">
-    <article class="tab-pane fade show active d-hidden" id="favs">
+    <article class="tab-pane fade d-hidden ${favsPane}" id="favs">
         <%@include file="jsp/favorites.jsp"%>
     </article>
 
-    <article class="tab-pane fade d-hidden" id="owned">
+    <article class="tab-pane fade d-hidden ${ownedPane}" id="owned">
         <%@include file="jsp/myRecipes.jsp"%>
     </article>
 
-    <article class="tab-pane fade d-hidden" id="planner">
+    <article class="tab-pane fade d-hidden ${plannerPane}" id="planner">
         <%@include file="jsp/weekly.jsp"%>
     </article>
 
-    <article class="tab-pane fade d-hidden" id="list">
+    <article class="tab-pane fade d-hidden ${listPane}" id="list">
         <%@include file="jsp/shoppingList.jsp"%>
     </article>
 
-    <article class="tab-pane fade d-hidden" id="settings">
+    <article class="tab-pane fade d-hidden ${settingsPane}" id="settings">
         <%@include file="jsp/settings.jsp"%>
     </article>
 </main>
