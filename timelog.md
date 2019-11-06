@@ -24,3 +24,4 @@
 | 10/17 | 08:15 | 10:00 | Adding new user form | 1.75 |
 | 10/30 | 09:00 | 14:00| Working on indie-project and this weeks energizes | 5.00 |
 | 10/31 | 09:00 | 11:15 | Team Project work time | 2.25 |
+| 11/01 | 11:30 | 14:30 | Week 9 Videos | 3.00 |

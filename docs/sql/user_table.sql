@@ -1,9 +1,7 @@
 use IndeProject;
-use indeTest;
+-- use indeTest;
 
 drop table users;
-
-delete from users;
 
 create table users (
 	id int primary key auto_increment,

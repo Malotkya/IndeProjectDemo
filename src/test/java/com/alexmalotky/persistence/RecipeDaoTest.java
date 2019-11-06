@@ -46,7 +46,7 @@ class RecipeDaoTest {
         Recipe newRecipe = new Recipe("testInsert", "", "");
         newRecipe.setUser(user);
 
-        int id = dao.insert(newRecipe);
+        int id = (int)dao.insert(newRecipe);
         Recipe testRecipe = dao.getById(id);
 
         assertEquals(newRecipe.toString(), testRecipe.toString());

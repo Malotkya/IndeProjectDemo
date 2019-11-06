@@ -16,6 +16,12 @@ create table recipes (
 alter table recipes
 alter column public set default false;
 
+alter table recipes
+alter column ingredients set default "[]";
+
+alter table recipes
+alter column directions set default "[]";
+
 insert into recipes
 values(
 	1,
@@ -45,5 +51,10 @@ values(
 	true,
     2
 );
+
+update recipes
+set public = true
+where id = 1;
+
 
 select * from recipes;
