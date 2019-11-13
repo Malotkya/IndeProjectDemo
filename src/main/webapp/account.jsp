@@ -13,7 +13,7 @@
 <div class="row">
 <ul class="nav nav-pills flex-flex col-12 col-md-2">
     <li class="nav-item">
-        <h2>Recipe</h2>
+        <strong>Recipe</strong>
     </li>
     <li class="nav-item ">
         <a class="nav-link ${favsBtn}" data-toggle="tab" href="#favs">Favorite Recipes</a>
@@ -26,7 +26,7 @@
     </li>
 
     <li class="nav-item">
-        <h2>Planning</h2>
+        <strong>Planning</strong>
     </li>
     <li class="nav-item">
         <a class="nav-link ${plannerBtn}" data-toggle="tab" href="#planner">Weekly Planner</a>
@@ -36,7 +36,7 @@
     </li>
 
     <li class="nav-item">
-        <h2>Settings</h2>
+        <strong>Settings</strong>
     </li>
     <li class="nav-item">
         <a class="nav-link ${settingsBtn}" data-toggle="tab" href="#settings">Account Settings</a>

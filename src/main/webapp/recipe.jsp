@@ -23,7 +23,7 @@
             <div class="float-right mt-1">
                 <c:if test="${isOwnedByUser}">
                     <span class="edit">
-                        <input type="submit" id="submit" value="Save" class="btn btn-success"/>
+                        <input type="submit" id="save" value="Save" class="btn btn-success"/>
                         <input type="button" id="cancel" value="Cancel" class="btn btn-secondary"/>
                         <input type="submit" id="delete" value="Delete" class="btn btn-danger"/>
                     </span>
@@ -38,9 +38,17 @@
                         </c:when>
                         <c:otherwise>
                             <input type="submit" id="like" value="Like" class="btn btn-primary"/>
+
                         </c:otherwise>
                     </c:choose>
-
+                    <div>
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#dateCollapse" id="planner">Add to Planner</button><br/>
+                        <div class="collapse" id="dateCollapse">
+                            <input type="date" id="date" />
+                            <input type="hidden" name="date" id="hiddenDate" />
+                            <input type="hidden" value="Date" id="submitDate" />
+                        </div>
+                    </div>
                 </span>
             </div>
             </c:if>

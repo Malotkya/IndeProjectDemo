@@ -1,5 +1,5 @@
 let templateSelect, templateNumber, templateText, templateButton, ingredients, directions, ingredientsList,
-    directionsList, directionsInput;
+    directionsList, directionsInput, dateInput, frmMain;
 
 const init = () => {
     //Used for displaying elements.
@@ -8,6 +8,7 @@ const init = () => {
     ingredientsList = document.getElementById("ingredientsList");
     directionsList = document.getElementById("directionsList");
     directionsInput = document.getElementById("directionsInput");
+    dateInput = document.getElementById("date");
 
     //Templates for building edit form.
     templateSelect = document.getElementById("newUnit");
@@ -19,13 +20,16 @@ const init = () => {
 
     //Add Event Listeners
     addEvent(templateButton, "click", addNewIngredient);
-    addEvent(document.getElementById("submit"), "click", submit);
+    addEvent(document.getElementById("save"), "click", submit);
     addEvent(document.getElementById("like"), "click", submit);
     addEvent(document.getElementById("delete"), "click", submit);
     addEvent(document.getElementById("edit"), "click", edit);
     addEvent(document.getElementById("cancel"), "click", show);
 
-    document.querySelector("form").onsubmit = validate;
+    frmMain = document.querySelector("form");
+
+    frmMain.onsubmit = validate;
+    dateInput.addEventListener("change", checkDate);
 }; window.onload = init;
 
 const show = () => {
@@ -193,13 +197,31 @@ const submit = event => {
     }
 
     if(submit) {
-        event.currentTarget.setAttribute("name", "submit");
+        event.currentTarget.setAttribute("name", "submitType");
+        frmMain.submit();
     }
 };
 
 const addEvent = (obj, eType, callback) => {
     if(obj && obj !== 'null' && obj !== 'undefined')
         obj.addEventListener(eType, callback);
+};
+
+const checkDate = event => {
+    let input = event.currentTarget.value;
+
+    if(window.confirm("Add recipe to: " + input)) {
+        document.getElementById("hiddenDate").value = new Date(input).getTime();
+        document.getElementById("submitDate").setAttribute("name", "submitType");
+        frmMain.submit();
+    }
+    else {
+        document.getElementById("planner").setAttribute("class", "btn btn-primary collapsed");
+        document.getElementById("planner").setAttribute("aria-expanded", "false");
+        document.getElementById("dateCollapse").setAttribute("class", "collapse");
+
+        event.currentTarget.value = "";
+    }
 };
 
 //TODO get form to stop submitting on hitting enter
@@ -210,7 +232,7 @@ const validate = () => {
 
         let list = allNodes[n].attributes;
         for(let i=0; i<list.length; i++) {
-            if(list[i].name === "name" && list[i].value === "submit")
+            if(list[i].name === "name" && list[i].value === "submitType")
                 return true;
         }
     }
