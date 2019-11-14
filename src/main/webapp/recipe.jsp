@@ -41,14 +41,14 @@
 
                         </c:otherwise>
                     </c:choose>
-                    <div>
+                    <span>
                         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#dateCollapse" id="planner">Add to Planner</button><br/>
                         <div class="collapse" id="dateCollapse">
                             <input type="date" id="date" />
                             <input type="hidden" name="date" id="hiddenDate" />
                             <input type="hidden" value="Date" id="submitDate" />
                         </div>
-                    </div>
+                    </span>
                 </span>
             </div>
             </c:if>

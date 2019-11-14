@@ -3,7 +3,9 @@ package com.alexmalotky.entity;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity(name = "Recipe")
 @Table(name = "recipes")
@@ -28,6 +30,9 @@ public class Recipe {
 
     @ManyToOne
     private User user;
+
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER )
+    private Set<Calendar> calendar = new HashSet<>();
 
     public Recipe() {
 
@@ -79,6 +84,14 @@ public class Recipe {
 
     public void setPublicView(Boolean publicView) {
         this.publicView = publicView;
+    }
+
+    public Set<Calendar> getCalendar() {
+        return calendar;
+    }
+
+    public void setCalendar(Set<Calendar> calendar) {
+        this.calendar = calendar;
     }
 
     public String getChecked() {

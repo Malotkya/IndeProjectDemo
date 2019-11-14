@@ -54,9 +54,7 @@ const show = () => {
 };
 
 const displayText = value => {
-    let list = JSON.parse(value);
-
-    return list.amount + " " + list.unit + ": " + list.item;
+    return value.amount + " " + value.unit + ": " + value.item;
 };
 
 const edit = () => {
@@ -79,8 +77,7 @@ const edit = () => {
 };
 
 const display_html = value => {
-    let list = JSON.parse(value);
-    return buildAll(list.amount, list.unit, list.item);
+    return buildAll(value.amount, value.unit, value.item);
 };
 
 const buildAll = (amount, unit, item) => {
@@ -174,7 +171,7 @@ const buildIngredientsJson = () => {
         obj.unit   = list[i].childNodes[1].value;
         obj.item   = list[i].childNodes[2].value;
 
-        output.push(JSON.stringify(obj));
+        output.push(obj);
     }
 
     document.getElementById("ingredients").value = JSON.stringify(output);
@@ -224,7 +221,6 @@ const checkDate = event => {
     }
 };
 
-//TODO get form to stop submitting on hitting enter
 const validate = () => {
     let allNodes = document.querySelector("form").querySelectorAll("input");
 
