@@ -20,6 +20,7 @@
                         <input type="hidden" name="id" value="${recipe.id}"/>
                         <input type="submit" name="submit" value="Delete" class="btn btn-danger">
                     </form>
+                    <!-- TODO: add to calendar option -->
                 </li>
             </c:forEach>
         </ul>

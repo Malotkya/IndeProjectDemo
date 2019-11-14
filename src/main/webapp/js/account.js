@@ -2,6 +2,7 @@ const init = () => {
     document.querySelectorAll(".confirm").forEach(function(item){
         item.onsubmit = confirmDelete;
     });
+    listInit();
     weeklyInit();
 };
 
@@ -20,4 +21,25 @@ const confirmDelete = event => {
         message = "Are you sure you want to do whatever it is your about to do?";
 
     return window.confirm(message);
+};
+
+const makeRequest = (url, parameters) => {
+    return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+
+        xhr.open("POST", url);
+
+        xhr.onreadystatechange = () => {
+            if(xhr.readyState === 4) {
+                if(xhr.status === 200) {
+                    resolve(JSON.parse(xhr.responseText));
+                } else {
+                    reject(new Error(xhr.responseText));
+                }
+            }
+        };
+
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(parameters);
+    });
 };

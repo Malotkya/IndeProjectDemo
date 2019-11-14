@@ -2,33 +2,15 @@ let day = 86400000;
 let dayList = [];
 
 const weeklyInit = () => {
-    let picker = document.querySelector("#picker");
+    let picker = document.querySelector("#weekPicker");
 
     dayList = document.querySelector("#week").querySelectorAll(".day");
 
     picker.addEventListener("change", getWeekEvent);
     getWeek(picker.value);
-};
 
-const makeRequest = (url, parameters) => {
-    return new Promise((resolve, reject) => {
-        let xhr = new XMLHttpRequest();
-
-        xhr.open("GET", url);
-
-        xhr.onreadystatechange = () => {
-            if(xhr.readyState === 4) {
-                if(xhr.status === 200) {
-                    resolve(JSON.parse(xhr.responseText));
-                } else {
-                    reject(new Error(xhr.responseText));
-                }
-            }
-        };
-
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send(parameters);
-    });
+    document.querySelector("#weekToList").addEventListener("click", jump);
+    jump();
 };
 
 const getWeekEvent = event => {
@@ -44,7 +26,7 @@ const getWeek = date => {
 };
 
 const fillWeek = json => {
-    clear();
+    clearWeek();
     let start = json.start;
 
     for(let i=0; i<7; i++) {
@@ -104,8 +86,13 @@ const buildRecipe = (time, recipe) => {
     return p;
 };
 
-const clear = () => {
+const clearWeek = () => {
     dayList.forEach(node => {
         node.innerHTML = "";
     })
+};
+
+const jump = () => {
+    document.querySelector("#listPicker").value = document.querySelector("#weekPicker").value;
+    getList(document.querySelector("#listPicker").value);
 };
