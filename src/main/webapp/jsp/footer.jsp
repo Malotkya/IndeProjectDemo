@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <footer class="row bg-info">
+    <!-- TODO: fill this with information or something -->
     <p class="col-12">This is the footer</p>
 </footer>
 </div>
