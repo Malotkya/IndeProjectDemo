@@ -29,10 +29,10 @@
         <strong>Planning</strong>
     </li>
     <li class="nav-item">
-        <a class="nav-link ${plannerBtn}" data-toggle="tab" href="#planner">Weekly Planner</a>
+        <a class="nav-link ${plannerBtn}" id="plannerBtn" data-toggle="tab" href="#planner">Weekly Planner</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link ${listBtn}" data-toggle="tab" href="#list">Shopping List</a>
+        <a class="nav-link ${listBtn}" id="listBtn" data-toggle="tab" href="#list">Shopping List</a>
     </li>
 
     <li class="nav-item">

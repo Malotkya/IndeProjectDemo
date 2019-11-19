@@ -10,7 +10,6 @@ const weeklyInit = () => {
     getWeek(picker.value);
 
     document.querySelector("#weekToList").addEventListener("click", jump);
-    jump();
 };
 
 const getWeekEvent = event => {
@@ -47,11 +46,12 @@ const fillWeek = json => {
 
 const buildRecipe = (time, recipe) => {
     let p = document.createElement("p");
-    p.setAttribute("class", "col-3");
+    p.setAttribute("class", "col-3 border border-secondary m-0");
 
     let span = document.createElement("a");
     span.setAttribute("href", "Recipe?id=" + recipe.id);
-    span.setAttribute("class", "col");
+    span.setAttribute("class", "col-12 text-center");
+    span.setAttribute("style", "display:inline-block");
     span.innerText = recipe.name;
     p.appendChild(span);
 
@@ -72,9 +72,10 @@ const buildRecipe = (time, recipe) => {
     date.setAttribute("name", "date");
 
     let input = document.createElement("form");
-    input.setAttribute("class", "confirm col");
+    input.setAttribute("class", "confirm col-12 text-center m-1");
     input.setAttribute("action", "Account");
     input.setAttribute("method", "post");
+    input.setAttribute("style", "display:inline-block");
     input.onsubmit = confirmDelete;
 
     input.appendChild(id);
@@ -95,4 +96,9 @@ const clearWeek = () => {
 const jump = () => {
     document.querySelector("#listPicker").value = document.querySelector("#weekPicker").value;
     getList(document.querySelector("#listPicker").value);
+
+    document.querySelector("#plannerBtn").setAttribute("class", "nav-link");
+    document.querySelector("#listBtn").setAttribute("class", "nav-link active");
+    document.querySelector("#planner").setAttribute("class", "tab-pane fade d-hidden");
+    document.querySelector("#list").setAttribute("class", "tab-pane fade d-hidden show active");
 };

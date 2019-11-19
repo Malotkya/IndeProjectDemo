@@ -7,12 +7,11 @@
 <c:set var="daysOfWeek" value="${['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']}" />
 
 <h2>Weekly Planner</h2>
-<input type="date" id="weekPicker" value="${date}" class="float-left"/>
+<input type="date" id="weekPicker" value="${date}" class="float-left date-picker"/>
 <button type="button" id="weekToList" class="btn btn-info float-right">Build Shopping List</button>
-<
-<div class="d-flex flex-column" id="week">
+<div class="d-flex flex-column w-100" id="week">
     <c:forEach var="day" items="${daysOfWeek}">
-        <section class="card flex-row">
+        <section class="card flex-row p-1">
             <h3 class="bg-light align-middle col-3 mb-0">${day}</h3>
             <div class="d-flex flex-row day col-9"></div>
         </section>

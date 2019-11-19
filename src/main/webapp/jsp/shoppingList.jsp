@@ -1,10 +1,9 @@
 <script src="js/list.js"></script>
 
 <h2>Shopping List</h2>
-${applicationScope['units'].json}
-<input type="date" id="listPicker"/>
+<input type="date" id="listPicker" value="${date}"/>
 <input type="hidden" id="units" value='${applicationScope['units'].json}' />
-<ul id="shoppingList">
+<ul id="shoppingList" class="list-group">
     <li>
         <select class="m-1 volume">
             <c:forEach items="${applicationScope['units'].volumes}" var="volume">

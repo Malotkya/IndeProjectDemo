@@ -7,6 +7,8 @@ const listInit = () => {
     units = JSON.parse(document.querySelector("#units").value);
     volumeTemplate = document.querySelector(".volume");
     weightTemplate = document.querySelector(".weight");
+
+    getList(picker.value);
 };
 
 const getListEvent = event => {
@@ -26,8 +28,7 @@ const fillList = json => {
     let list = [];
 
     json.list.forEach(obj => {
-        let ingredients = JSON.parse(obj.recipe.ingredients);
-        ingredients.forEach(ingredient => {
+        obj.recipe.ingredients.forEach(ingredient => {
             let test = find(list, ingredient.item, "name");
             if(test === null) {
                 list.push(new Ingredient(ingredient.item, ingredient.unit, ingredient.amount));
@@ -46,14 +47,16 @@ const clearList = () => {
 };
 
 const find = (array, object, arrObj) => {
-    for(let i=0; i<array.length; i++) {
-        let test = array[i];
-        if(arrObj === undefined) {
-            if(test == object)
-                return test;
-        } else {
-            if(test[arrObj] == object)
-                return test;
+    if (Array.isArray(array) ) {
+        for (let i = 0; i < array.length; i++) {
+            let test = array[i];
+            if (arrObj === undefined) {
+                if (test == object)
+                    return test;
+            } else {
+                if (test[arrObj] == object)
+                    return test;
+            }
         }
     }
     return null;
@@ -63,7 +66,7 @@ class Ingredient {
     constructor(name, code, amount) {
         this.name = name;
         this.code = code;
-        this.amount = amount;
+        this.amount = Number(amount);
 
         let test = find(units.Volume, this.code, "code");
         if(test !== null) {
@@ -91,16 +94,16 @@ class Ingredient {
         }
     }
 
-    get buildListItem() {
+    buildListItem() {
         let amount = document.createElement("span");
         amount.setAttribute("class", "amount");
-        amount.innerText = this.amount
+        amount.innerText = this.amount + " ";
 
         let code = document.createElement("span");
-        if(this.code === units.Volume) {
+        if(this.units === units.Volume) {
             code = volumeTemplate.cloneNode(true);
             code.value = this.code;
-        } else if(this.code === units.Weight) {
+        } else if(this.units === units.Weight) {
             code = weightTemplate.cloneNode(true);
             code.value = this.code;
         } else {
@@ -111,10 +114,10 @@ class Ingredient {
 
         let name = document.createElement("span");
         name.setAttribute("class", "name");
-        name.innerText = this.name;
+        name.innerText = " " + this.name;
 
         let li = document.createElement("li");
-
+        li.setAttribute("class", "list-group-item");
         // TODO: add a remove from list button
 
         li.appendChild(amount);
@@ -135,7 +138,6 @@ class Ingredient {
         this.amount = (this.amount * currentUnit) / newUnit;
         this.code = newCode;
 
-        node.innerText = this.amount;
+        node.innerText = this.amount + " ";
     }
-
 }

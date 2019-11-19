@@ -10,3 +10,7 @@
         flex-direction: column !important;
     }
 }
+
+.date-picker, #weekToList {
+    margin: 6px 12px;
+}
