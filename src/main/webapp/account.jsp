@@ -22,6 +22,9 @@
         <a class="nav-link ${ownedBtn}" data-toggle="tab" href="#owned">My Recipes</a>
     </li>
     <li class="nav-item">
+        <a class="nav-link ${importBtn}"  data-toggle="tab" href="#import">Import Recipe</a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link " href="NewRecipe">New Recipe</a>
     </li>
 
@@ -50,6 +53,10 @@
 
     <article class="tab-pane fade d-hidden ${ownedPane}" id="owned">
         <%@include file="jsp/myRecipes.jsp"%>
+    </article>
+
+    <article class="tab-pane fade d-hidden ${importPane}" id="import">
+        <%@include file="jsp/import.jsp"%>
     </article>
 
     <article class="tab-pane fade d-hidden ${plannerPane}" id="planner">
