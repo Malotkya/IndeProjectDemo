@@ -5,7 +5,7 @@ drop table recipes;
 
 create table recipes (
 	id int primary key auto_increment,
-    name varchar(20) not null,
+    name varchar(100) not null,
     ingredients varchar(2000),
     directions varchar(2000),
     public bool,
@@ -21,6 +21,9 @@ alter column ingredients set default "[]";
 
 alter table recipes
 alter column directions set default "[]";
+
+alter table recipes
+modify column name varchar(100);
 
 insert into recipes
 values(
@@ -46,7 +49,7 @@ insert into recipes
 values(
 	3,
     "Test Recipe",
-	"[\"{\\\"item\\\":\\\"Ingredient 1\\\", \\\"amount\\\":\\\"20\\\", \\\"unit\\\":\\\"oz\\\"}\",\"{\\\"item\\\":\\\"Ingredient 2\\\", \\\"amount\\\":\\\"5\\\", \\\"unit\\\":\\\"lbs\\\"}\"]",
+	"[{\"item\":\"Ingredient 1\", \"amount\":\"20\", \"unit\":\"oz\"}\",\"{\"item\":\"Ingredient 2\", \"amount\":\"5\", \"unit\":\"lbs\"}\"]",
 	"[\"Instruction 1\", \"Instruction 2\"]",
 	true,
     2
@@ -58,3 +61,4 @@ where id = 1;
 
 
 select * from recipes;
+describe recipes;

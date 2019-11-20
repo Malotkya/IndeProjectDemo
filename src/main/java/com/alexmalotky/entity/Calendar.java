@@ -3,6 +3,8 @@ package com.alexmalotky.entity;
 import com.alexmalotky.persistence.CalendarKey;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Entity(name = "Calendar")
@@ -20,7 +22,15 @@ public class Calendar {
 
     @Id
     @Column(name="record")
-    private Date date;
+    private long date;
+
+    public Calendar() {}
+
+    public Calendar(User user, Recipe recipe, long date) {
+        this.user = user;
+        this.recipe = recipe;
+        this.date = date;
+    }
 
     public User getUser() {
         return user;
@@ -38,11 +48,15 @@ public class Calendar {
         this.recipe = recipe;
     }
 
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(long date) {
         this.date = date;
+    }
+
+    public LocalDate getLocalDate() {
+        return LocalDate.ofInstant(new Date(date).toInstant(), ZoneId.systemDefault());
     }
 }

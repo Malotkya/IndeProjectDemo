@@ -14,12 +14,12 @@ import java.util.Objects;
 public class CalendarKey implements Serializable {
     private User user;
     private Recipe recipe;
-    private Date date;
+    private long date;
 
     public CalendarKey() {
     }
 
-    public CalendarKey(User user, Recipe recipe, Date date) {
+    public CalendarKey(User user, Recipe recipe, long date) {
         this.user = user;
         this.recipe = recipe;
         this.date = date;
@@ -30,13 +30,9 @@ public class CalendarKey implements Serializable {
         if (this == o) return true;
         if (!(o instanceof CalendarKey)) return false;
         CalendarKey that = (CalendarKey) o;
-
-        LocalDate myDate = LocalDate.ofInstant(date.toInstant(), ZoneId.systemDefault());
-        LocalDate thatDate = LocalDate.ofInstant(that.date.toInstant(), ZoneId.systemDefault());
-
-        return Objects.equals(user, that.user) &&
+                return Objects.equals(user, that.user) &&
                 Objects.equals(recipe, that.recipe) &&
-                myDate.isEqual(thatDate);
+                getLocalDate().isEqual(that.getLocalDate());
     }
 
     @Override
@@ -60,11 +56,11 @@ public class CalendarKey implements Serializable {
         this.recipe = recipe;
     }
 
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(long date) {
         this.date = date;
     }
 
@@ -76,5 +72,9 @@ public class CalendarKey implements Serializable {
         map.put("date", date);
 
         return map;
+    }
+
+    public LocalDate getLocalDate() {
+        return LocalDate.ofInstant(new Date(date).toInstant(), ZoneId.systemDefault());
     }
 }

@@ -25,3 +25,6 @@
 | 10/30 | 09:00 | 14:00| Working on indie-project and this weeks energizes | 5.00 |
 | 10/31 | 09:00 | 11:15 | Team Project work time | 2.25 |
 | 11/01 | 11:30 | 14:30 | Week 9 Videos | 3.00 |
+| 11/13 | 08:45 | 16:45 | Week 10 & 11 Videos and working on calendar portion of app | 8.00 |
+| 11/19 | 10:00 | 14:00 | Building user account page | 4.00 |
+| 11/20 | 09:30 | | Adding Search Functionality | |

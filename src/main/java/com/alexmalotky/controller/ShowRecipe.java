@@ -1,8 +1,10 @@
 package com.alexmalotky.controller;
 
+import com.alexmalotky.entity.Calendar;
 import com.alexmalotky.entity.Favorite;
 import com.alexmalotky.entity.Recipe;
 import com.alexmalotky.entity.User;
+import com.alexmalotky.persistence.CalendarKey;
 import com.alexmalotky.persistence.GenericDao;
 import com.alexmalotky.persistence.FavoriteKey;
 import com.alexmalotky.util.LoginServlet;
@@ -50,7 +52,7 @@ public class ShowRecipe extends LoginServlet {
         try
         {
             User user = getLoggedInUser(request);
-            String submitType = request.getParameter("submit");
+            String submitType = request.getParameter("submitType");
             int id = Integer.parseInt(request.getParameter("id"));
             Recipe recipe = dao.getById(id);
 
@@ -69,6 +71,10 @@ public class ShowRecipe extends LoginServlet {
                     break;
                 case "Like":
                     performLike(user, recipe);
+                    response.sendRedirect(request.getContextPath() + "/Recipe?id=" + id);
+                    break;
+                case "Date":
+                    performAddToCalendar(request, user, recipe);
                     response.sendRedirect(request.getContextPath() + "/Recipe?id=" + id);
                     break;
             }
@@ -108,13 +114,19 @@ public class ShowRecipe extends LoginServlet {
     private void performUnlike(User user, Recipe recipe){
 
         GenericDao<Favorite> favDao = new GenericDao<>(Favorite.class);
-
         FavoriteKey key = new FavoriteKey(user, recipe);
-
         List<Favorite> list = favDao.findByPropertyEqual(key.generateMap());
 
         for(Favorite f: list)
             favDao.delete(f);
+    }
+
+    private void performAddToCalendar(HttpServletRequest request, User user, Recipe recipe) {
+        long date = Long.parseLong(request.getParameter("date"));
+        GenericDao<Calendar> calendarDao = new GenericDao<>(Calendar.class);
+
+        Calendar entry = new Calendar(user, recipe, date);
+        calendarDao.saveOrUpdate(entry);
     }
 }
 

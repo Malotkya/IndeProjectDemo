@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet( urlPatterns = {"/Import"} )
-public class Scrape extends LoginServlet {
+public class Import extends LoginServlet {
 
     private GenericDao<Recipe> dao = new GenericDao<>(Recipe.class);
     private final Logger logger = LogManager.getLogger(this.getClass());

@@ -38,6 +38,9 @@ public class User {
                 inverseJoinColumns = {@JoinColumn(name="recipe_id", nullable = false, updatable = false)})
     private Set<Recipe> favorites = new HashSet<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER )
+    private Set<Calendar> calendar = new HashSet<>();
+
     public User() {
     }
 
@@ -106,5 +109,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Calendar> getCalendar() {
+        return calendar;
+    }
+
+    public void setCalendar(Set<Calendar> calendar) {
+        this.calendar = calendar;
     }
 }

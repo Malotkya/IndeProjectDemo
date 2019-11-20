@@ -1,7 +1,6 @@
 package com.alexmalotky.controller;
 
-import com.alexmalotky.entity.Units;
-import com.alexmalotky.persistence.UserDao;
+import com.alexmalotky.util.Units;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

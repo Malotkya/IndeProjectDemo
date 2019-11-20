@@ -1,8 +1,7 @@
 package com.alexmalotky.controller;
 
-import com.alexmalotky.entity.Favorite;
-import com.alexmalotky.entity.Recipe;
-import com.alexmalotky.entity.User;
+import com.alexmalotky.entity.*;
+import com.alexmalotky.persistence.CalendarKey;
 import com.alexmalotky.persistence.GenericDao;
 import com.alexmalotky.persistence.UserDao;
 import com.alexmalotky.persistence.FavoriteKey;
@@ -18,7 +17,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @WebServlet( urlPatterns = {"/Account"} )
 public class UserAccount extends LoginServlet {
@@ -30,18 +34,18 @@ public class UserAccount extends LoginServlet {
         try
         {
             getLoggedInUser(request);
+
+            String show = request.getParameter("show");
+            if(show == null)
+                show = "favs";
+
+            request.setAttribute( show+"Btn", "active");
+            request.setAttribute(show+"Pane", "show active");
         }
         catch (NotLoggedInException e)
         {
             response.sendRedirect(request.getContextPath() + "/error.jsp");
         }
-
-        String show = request.getParameter("show");
-        if(show == null)
-            show = "favs";
-
-        request.setAttribute( show+"Btn", "active");
-        request.setAttribute(show+"Pane", "show active");
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/account.jsp");
         dispatcher.forward(request, response);
@@ -73,6 +77,9 @@ public class UserAccount extends LoginServlet {
                     changePassword(user, request);
                     redirect = "settings";
                     break;
+                case "Remove":
+                    removeFromCalendar(user, request);
+                    redirect = "planner";
             }
         }
         catch (NotLoggedInException e)
@@ -125,5 +132,21 @@ public class UserAccount extends LoginServlet {
 
         UserDao userDao = new UserDao();
         userDao.update(user);
+    }
+
+    private void removeFromCalendar(User user, HttpServletRequest request) {
+        long date = Long.parseLong(request.getParameter("date"));
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        GenericDao<Recipe> recipeDao = new GenericDao<>(Recipe.class);
+        GenericDao<Calendar> calendarDao = new GenericDao<>(Calendar.class);
+
+        Recipe r = recipeDao.getById(id);
+
+        CalendarKey key = new CalendarKey(user, r, date);
+        List<Calendar> list = calendarDao.findByPropertyEqual(key.generateMap());
+
+        for(Calendar c : list)
+            calendarDao.delete(c);
     }
 }

@@ -54,13 +54,17 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return "Recipe{" +
+        String output = "Recipe{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", ingredients='" + ingredients + '\'' +
-                ", directions='" + directions + '\'' +
-                ", user=" + user.getFirstName() + " " + user.getLastName() +
-                '}';
+                ", directions='" + directions + '\'';
+        if(user != null)
+            output += ", user=" + user.getFirstName() + " " + user.getLastName();
+        else
+            output += ",user=null";
+
+        return output + '}';
     }
 
     public void setId(int id) {this.id = id;}
@@ -95,8 +99,9 @@ public class Recipe {
     }
 
     public String getChecked() {
-
-        if(publicView)
+        if(publicView == null)
+            return "";
+        else if(publicView)
             return "checked";
         else
             return "";

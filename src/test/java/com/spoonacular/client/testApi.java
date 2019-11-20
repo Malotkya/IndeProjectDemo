@@ -1,4 +1,4 @@
-package com.spoonacular.api;
+package com.spoonacular.client;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spoonacular.entity.ResponseRecipe;

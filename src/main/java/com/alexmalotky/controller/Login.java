@@ -17,5 +17,6 @@ public class Login extends LoginServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         checkForLogin(request);
         response.sendRedirect(request.getHeader("referer"));
+        //TODO: redirect to account instead of index
     }
 }

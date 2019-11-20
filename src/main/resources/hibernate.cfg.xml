@@ -22,6 +22,7 @@
         <mapping class="com.alexmalotky.entity.Weight"/>
         <mapping class="com.alexmalotky.entity.Favorite"/>
         <mapping class="com.alexmalotky.entity.Role"/>
+        <mapping class="com.alexmalotky.entity.Calendar"/>
 
     </session-factory>
 
