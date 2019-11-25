@@ -1,5 +1,7 @@
 package com.alexmalotky.controller;
 
+import com.alexmalotky.action.Favorites;
+import com.alexmalotky.action.Planner;
 import com.alexmalotky.entity.Calendar;
 import com.alexmalotky.entity.Favorite;
 import com.alexmalotky.entity.Recipe;
@@ -24,7 +26,7 @@ import java.util.*;
 public class ShowRecipe extends LoginServlet {
 
     private GenericDao<Recipe> dao = new GenericDao<>(Recipe.class);
-    private final Logger logger = LogManager.getLogger(this.getClass());
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,14 +34,11 @@ public class ShowRecipe extends LoginServlet {
         Recipe r = dao.getById(id);
         request.setAttribute("recipe", r);
 
-        try
-        {
+        try {
             User user = getLoggedInUser(request);
-            if(user.getFavorites().contains(r))
+            if (user.getFavorites().contains(r))
                 request.setAttribute("isFavorite", true);
-        }
-        catch (NotLoggedInException e)
-        {
+        } catch (NotLoggedInException e) {
             //Do Nothing
         }
 
@@ -49,8 +48,7 @@ public class ShowRecipe extends LoginServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try
-        {
+        try {
             User user = getLoggedInUser(request);
             String submitType = request.getParameter("submitType");
             int id = Integer.parseInt(request.getParameter("id"));
@@ -63,24 +61,23 @@ public class ShowRecipe extends LoginServlet {
                     break;
                 case "Delete":
                     performDelete(recipe);
-                    response.sendRedirect(request.getContextPath() + "/");
+                    response.sendRedirect(request.getContextPath());
                     break;
                 case "Unlike":
-                    performUnlike(user, recipe);
+                    Favorites.unlike(user, recipe);
                     response.sendRedirect(request.getContextPath() + "/Recipe?id=" + id);
                     break;
                 case "Like":
-                    performLike(user, recipe);
+                    Favorites.like(user, recipe);
                     response.sendRedirect(request.getContextPath() + "/Recipe?id=" + id);
                     break;
                 case "Date":
-                    performAddToCalendar(request, user, recipe);
+                    long date = Long.parseLong(request.getParameter("date"));
+                    Planner.add(user, recipe, date);
                     response.sendRedirect(request.getContextPath() + "/Recipe?id=" + id);
                     break;
             }
-        }
-        catch (NotLoggedInException e)
-        {
+        } catch (NotLoggedInException e) {
             logger.error("Invalid request from: " + request.getRemoteAddr());
         }
     }
@@ -91,7 +88,7 @@ public class ShowRecipe extends LoginServlet {
         String newIngredients = request.getParameter("ingredients");
         String newDirections = request.getParameter("directions");
 
-        if(publicView == null)
+        if (publicView == null)
             publicView = "off";
 
         recipe.setName(newName);
@@ -104,29 +101,6 @@ public class ShowRecipe extends LoginServlet {
 
     private void performDelete(Recipe recipe) {
         dao.delete(recipe);
-    }
-
-    private void performLike(User user, Recipe recipe) {
-        GenericDao<Favorite> favDao = new GenericDao<>(Favorite.class);
-        favDao.insert(new Favorite(user, recipe));
-    }
-
-    private void performUnlike(User user, Recipe recipe){
-
-        GenericDao<Favorite> favDao = new GenericDao<>(Favorite.class);
-        FavoriteKey key = new FavoriteKey(user, recipe);
-        List<Favorite> list = favDao.findByPropertyEqual(key.generateMap());
-
-        for(Favorite f: list)
-            favDao.delete(f);
-    }
-
-    private void performAddToCalendar(HttpServletRequest request, User user, Recipe recipe) {
-        long date = Long.parseLong(request.getParameter("date"));
-        GenericDao<Calendar> calendarDao = new GenericDao<>(Calendar.class);
-
-        Calendar entry = new Calendar(user, recipe, date);
-        calendarDao.saveOrUpdate(entry);
     }
 }
 
