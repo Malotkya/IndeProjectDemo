@@ -4,6 +4,8 @@ import com.alexmalotky.entity.Calendar;
 import com.alexmalotky.entity.User;
 import com.alexmalotky.util.LoginServlet;
 import com.alexmalotky.util.NotLoggedInException;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +16,6 @@ import java.io.PrintWriter;
 import java.time.DayOfWeek;
 import java.time.*;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Set;
 
 @WebServlet( urlPatterns = {"/Week"} )
@@ -31,31 +32,36 @@ public class Week extends LoginServlet {
 
         try
         {
-            String json = "{ ";
+            JSONObject json = new JSONObject();
             User u = getLoggedInUser(request);
             Set<Calendar> calendars = u.getCalendar();
             long date = getDate(request);
             LocalDate start = getStartOfWeek(date);
             LocalDate end = start.plusDays(6);
 
-            json += "\"start\":" + convertToDate(start) + ", ";
+            json.put("start", convertToDate(start));
 
-            json += "\"list\":[ ";
-            for (Iterator<Calendar> it = calendars.iterator(); it.hasNext(); ){
-                Calendar c = it.next();
+            JSONArray list = new JSONArray();
+            for (Calendar c : calendars){
                 LocalDate event = c.getLocalDate();
                 if( !(event.isBefore(start) || event.isAfter(end)) ){
-                    json += "{\"date\":" + c.getDate() + " ,\"recipe\": " +
-                            "{ \"id\":" + c.getRecipe().getId() + " ,\"name\":\"" + c.getRecipe().getName() + "\", " +
-                            "\"ingredients\":" + c.getRecipe().getIngredients() + "}}";
+                    JSONObject calendar = new JSONObject();
+                    JSONObject recipe = new JSONObject();
 
-                    if( it.hasNext() )
-                        json += ", ";
+                    recipe.put("id", c.getRecipe().getId());
+                    recipe.put("name", c.getRecipe().getName());
+                    recipe.put("ingredients", new JSONArray(c.getRecipe().getIngredients()));
+
+                    calendar.put("date", c.getDate());
+                    calendar.put("recipe", recipe);
+
+                    list.put(calendar);
                 }
             }
-            json += "]}";
 
-            dom.write(json);
+            json.put("list", list);
+
+            dom.write(json.toString());
         } catch (NotLoggedInException e) {
             response.setStatus(401);
             dom.write("Access is denied!");
