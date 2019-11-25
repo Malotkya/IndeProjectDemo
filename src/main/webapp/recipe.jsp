@@ -34,18 +34,16 @@
                     </c:if>
                     <c:choose>
                         <c:when test="${isFavorite}">
-                            <input type="submit" id="like" value="Unlike" class="btn btn-primary"/>
+                                <input type="submit" id="like" value="Unlike" class="btn btn-primary"/>
                         </c:when>
                         <c:otherwise>
                             <input type="submit" id="like" value="Like" class="btn btn-primary"/>
-
                         </c:otherwise>
                     </c:choose>
                     <span>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#dateCollapse" id="planner">Add to Planner</button><br/>
-                        <div class="collapse" id="dateCollapse">
-                            <!-- TODO: fix where this date input shows up -->
-                            <input type="date" id="date" />
+                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#dateCollapse" id="planner">Add to Planner</button>
+                        <div class="collapse m-1" id="dateCollapse" >
+                            <input type="date" id="date" class="float-right"/>
                             <input type="hidden" name="date" id="hiddenDate" />
                             <input type="hidden" value="Date" id="submitDate" />
                         </div>
