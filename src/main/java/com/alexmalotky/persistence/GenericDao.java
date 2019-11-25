@@ -149,6 +149,31 @@ public class GenericDao<T> {
         return list;
     }
 
+    /**
+     * Finds entities by multiple properties.
+     * Inspired by https://stackoverflow.com/questions/11138118/really-dynamic-jpa-criteriabuilder
+
+     * @param propertyMap property and value pairs
+     * @return entities with properties equal to those passed in the map
+     *
+     *
+     */
+    public List<T> findByPropertyLike(Map<String, String> propertyMap) {
+        Session session = getSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+        List<Predicate> predicates = new ArrayList<Predicate>();
+        for (Map.Entry entry: propertyMap.entrySet()) {
+            predicates.add(builder.like(root.get((String) entry.getKey()), (String)entry.getValue()));
+        }
+        query.select(root).where(builder.and(predicates.toArray(new Predicate[predicates.size()])));
+
+        List<T> list = session.createQuery(query).getResultList();
+        session.close();
+        return list;
+    }
+
 
     /**
      * Returns an open session from the SessionFactory
