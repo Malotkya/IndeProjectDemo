@@ -11,6 +11,7 @@
 <%@include file="jsp/topbar.jsp"%>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <form class="form" action="NewUser" method="POST">
+    <!-- TODO: add validation -->
     <div class="modal-dialog">
         <div class="modal-content">
 
