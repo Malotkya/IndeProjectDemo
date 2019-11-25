@@ -10,6 +10,7 @@
 <%@include file="jsp/header.jsp"%>
 <%@include file="jsp/topbar.jsp"%>
 <form class="form" id="loginModal" action="j_security_check" method="POST">
+    <!-- TODO: add validation -->
     <div class="modal-dialog">
         <div class="modal-content">
 
