@@ -13,6 +13,7 @@
                 <input type="date" class="date" class="float-right"/>
                 <input type="hidden" name="date" id="hiddenDate" />
                 <input type="hidden" value="Date" name="submitType" />
+                <input type="hidden" value="${recipe.id}" name="id" />
                 <c:if test="${tab != null}" >
                     <input type="hidden" name="show" value="${tab}">
                 </c:if>
