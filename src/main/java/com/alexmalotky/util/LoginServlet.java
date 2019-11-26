@@ -1,7 +1,7 @@
 package com.alexmalotky.util;
 
 import com.alexmalotky.entity.User;
-import com.alexmalotky.persistence.UserDao;
+import com.alexmalotky.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,8 +15,8 @@ public class LoginServlet extends HttpServlet {
 
     protected User getLoggedInUser(HttpServletRequest request) throws NotLoggedInException {
         //get updated user from database.
-        UserDao dao = new UserDao();
-        User user = dao.getUserByUserName(request.getRemoteUser());
+        GenericDao<User> dao = new GenericDao<>(User.class);
+        User user = dao.findByPropertyEqual("userName", request.getRemoteUser()).get(0);
 
         //make sure user exists
         if(user == null)
