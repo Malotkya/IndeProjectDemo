@@ -1,5 +1,7 @@
 package com.alexmalotky.controller;
 
+import com.alexmalotky.action.Favorites;
+import com.alexmalotky.action.Recipes;
 import com.alexmalotky.entity.Favorite;
 import com.alexmalotky.entity.Recipe;
 import com.alexmalotky.entity.User;
@@ -23,18 +25,13 @@ public class NewRecipe extends LoginServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        GenericDao<Recipe> recipeDao = new GenericDao<>(Recipe.class);
-        GenericDao<Favorite> favDao = new GenericDao<>(Favorite.class);
         String redirect = request.getContextPath();
 
         try
         {
             User user = getLoggedInUser(request);
-            Recipe newRecipe = new Recipe("Recipe Name", user);
-            Favorite newFav = new Favorite(user, newRecipe);
-
-            recipeDao.insert(newRecipe);
-            favDao.insert(newFav);
+            Recipe newRecipe = new Recipes(user).makeNewRecipe();
+            new Favorites(user).like(newRecipe);
 
             redirect += "/Recipe?id=" + newRecipe.getId();
         }
