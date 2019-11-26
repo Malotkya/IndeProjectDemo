@@ -5,12 +5,19 @@ import com.alexmalotky.persistence.GenericDao;
 
 public class Favorites {
 
-    public static void like(User user, Recipe recipe) {
-        GenericDao<Favorite> dao = new GenericDao<>(Favorite.class);
+    private GenericDao<Favorite> dao = new GenericDao<>(Favorite.class);
+    private User user;
+
+    public Favorites (User user) {
+        this.user = user;
+    }
+
+    public void like(Recipe recipe) {
+
         dao.insert(new Favorite(user, recipe));
     }
 
-    public static void unlike(User user, Recipe recipe) {
+    public void unlike(Recipe recipe) {
         GenericDao<Favorite> dao = new GenericDao<>(Favorite.class);
         dao.delete(new Favorite(user, recipe));
     }
