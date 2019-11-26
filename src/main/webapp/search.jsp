@@ -15,11 +15,12 @@
         </c:when>
         <c:otherwise>
             <c:forEach items="${results}" var="recipe">
-                <!-- TODO: add a favorites button -->
+                <c:set var="target" value="search${recipe.id}" />
                 <%@include file="jsp/listItemRecipe.jsp"%>
             </c:forEach>
         </c:otherwise>
     </c:choose>
     </ul>
 </c:if>
+<script src="js/search.js"></script>
 <%@include file="jsp/footer.jsp"%>

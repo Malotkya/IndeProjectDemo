@@ -28,8 +28,11 @@ const confirmDelete = event => {
 };
 
 const submitDate = event => {
-  let form = event.currentTarget.parentNode;
-  form.submit();
+    let input = event.currentTarget.value;
+    if(window.confirm("Add recipe to: " + input)) {
+        document.getElementById("hiddenDate").value = new Date(input).getTime();
+        event.currentTarget.parentNode.submit();
+    }
 };
 
 const makeRequest = (url, parameters) => {
