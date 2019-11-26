@@ -16,7 +16,7 @@
                 <c:set var="button" value='
                 <form action="${thisPage}" method="post" class="col confirm">
                     <input type="hidden" name="id" value="${recipe.id}"/>
-                    <input type="submit" name="submit" value="Unlike" class="btn btn-danger">
+                    <input type="submit" name="submitType" value="Unlike" class="btn btn-danger">
                 </form>' />
                 <c:set var="target" value="favs${recipe.id}" />
                 <%@include file="../listItemRecipe.jsp"%>
