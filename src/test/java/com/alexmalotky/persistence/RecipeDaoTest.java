@@ -40,8 +40,8 @@ class RecipeDaoTest {
 
     @Test
     void testInsertSuccess(){
-        UserDao userDao = new UserDao();
-        User user = userDao.getUserById(1);
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+        User user = userDao.getById(1);
 
         Recipe newRecipe = new Recipe("testInsert", "", "");
         newRecipe.setUser(user);
@@ -54,7 +54,7 @@ class RecipeDaoTest {
 
     @Test
     void testInsertFail(){
-        User user = new User("Not Real", "Please Be Not Real", "Tots_Fake", "");
+        User user = new User("Not Real", "Please Be Not Real", "Tots_Fake", "", "");
         Recipe newRecipe = new Recipe("testInsert", "", "");
         newRecipe.setUser(user);
 
@@ -86,8 +86,8 @@ class RecipeDaoTest {
 
     @Test
     void testFindByMultipleProerties(){
-        UserDao userDao = new UserDao();
-        User user = userDao.getUserById(1);
+        GenericDao<User> userDao = new GenericDao<>(User.class);
+        User user = userDao.getById(1);
 
         Map<String, Object> paramater = new HashMap<>();
         paramater.put("user", user);

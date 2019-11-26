@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserDaoTest {
 
-    private UserDao dao;
+    private GenericDao<User> dao;
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     @BeforeEach
@@ -22,19 +22,19 @@ class UserDaoTest {
         Database database = Database.getInstance();
         database.runSQL("cleandb.sql");
 
-        dao = new UserDao();
+        dao = new GenericDao(User.class);
     }
 
     @Test
     void testGetAllUsers() {
-        List<User> list = dao.getAllUsers();
+        List<User> list = dao.getAll();
         logger.debug(list);
         assertEquals(3, list.size());
     }
 
     @Test
     void testGetUserById() {
-        User user = dao.getUserById(2);
+        User user = dao.getById(2);
         assertEquals("Malotky", user.getLastName());
     }
 
@@ -48,55 +48,46 @@ class UserDaoTest {
         user.setLastName(lastName);
         user.setUserName("Blah Blah Blah");
 
-        int id = dao.insert(user);
-        user = dao.getUserById(id);
+        int id = (Integer)dao.insert(user);
+        user = dao.getById(id);
         assertEquals(lastName, user.getLastName() );
     }
 
     @Test
     void testUpdate() {
-        User user = dao.getUserById(3);
+        User user = dao.getById(3);
         user.setEmail("CalzoneZone@gmail.com");
-        dao.update(user);
+        dao.saveOrUpdate(user);
     }
 
     @Test
     void testDelete() {
-        User user = dao.getUserById(2);
+        User user = dao.getById(2);
         dao.delete(user);
 
-        assertNull(dao.getUserById(2));
+        assertNull(dao.getById(2));
     }
 
     @Test
     void testInsertNewRecipe() {
-        User newUser = new User("Alex", "Malotky", "ajmalotky", "");
+        User newUser = new User("Alex", "Malotky", "ajmalotky", "", "");
 
         Recipe newRecipe = new Recipe("TestRecipe", "", "");
         newUser.addRecipe(newRecipe);
 
-        int id = dao.insert(newUser);
-        User testUser = dao.getUserById(id);
+        int id = (Integer)dao.insert(newUser);
+        User testUser = dao.getById(id);
 
         assertEquals(newUser.toString(), testUser.toString());
     }
 
     @Test
     void testFavorites() {
-        User user = dao.getUserById(2);
+        User user = dao.getById(2);
 
         logger.debug(user.getFavorites().toString());
         logger.debug(user);
 
         assertEquals(3, user.getFavorites().size());
-    }
-
-    @Test
-    void testGetByUserName() {
-        User user = dao.getUserByUserName("test1");
-        assertNotNull(user);
-
-        user = dao.getUserByUserName("ThisIsntAUserName");
-        assertNull(user);
     }
 }
