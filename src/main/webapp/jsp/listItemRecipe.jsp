@@ -12,7 +12,7 @@
             <form class="collapse m-1" id="${target}" action="${thisPage}" method="post">
                 <input type="date" class="date" class="float-right"/>
                 <input type="hidden" name="date" id="hiddenDate" />
-                <input type="hidden" value="Date" name="submit" />
+                <input type="hidden" value="Date" name="submitType" />
                 <c:if test="${tab != null}" >
                     <input type="hidden" name="show" value="${tab}">
                 </c:if>
