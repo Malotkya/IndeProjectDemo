@@ -1,6 +1,10 @@
 const init = () => {
-    document.querySelectorAll(".confirm").forEach(function(item){
+    document.querySelectorAll(".confirm").forEach(item => {
         item.onsubmit = confirmDelete;
+    });
+
+    document.querySelectorAll(".date").forEach(item => {
+       item.addEventListener("change", submitDate);
     });
     listInit();
     weeklyInit();
@@ -21,6 +25,11 @@ const confirmDelete = event => {
         message = "Are you sure you want to do whatever it is your about to do?";
 
     return window.confirm(message);
+};
+
+const submitDate = event => {
+  let form = event.currentTarget.parentNode;
+  form.submit();
 };
 
 const makeRequest = (url, parameters) => {

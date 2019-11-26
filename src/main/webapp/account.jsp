@@ -10,6 +10,8 @@
 <%@include file="jsp/header.jsp"%>
 <%@include file="jsp/topbar.jsp"%>
 
+<c:set var="thisPage" value="Account" />
+
 <div class="row">
 <ul class="nav nav-pills flex-flex col-12 col-md-2">
     <li class="nav-item">
@@ -48,27 +50,27 @@
 
 <main class="tab-content col">
     <article class="tab-pane fade d-hidden ${favsPane}" id="favs">
-        <%@include file="jsp/favorites.jsp"%>
+        <%@include file="jsp/account/favorites.jsp"%>
     </article>
 
     <article class="tab-pane fade d-hidden ${ownedPane}" id="owned">
-        <%@include file="jsp/myRecipes.jsp"%>
+        <%@include file="jsp/account/myRecipes.jsp"%>
     </article>
 
     <article class="tab-pane fade d-hidden ${importPane}" id="import">
-        <%@include file="jsp/import.jsp"%>
+        <%@include file="jsp/account/import.jsp"%>
     </article>
 
     <article class="tab-pane fade d-hidden ${plannerPane}" id="planner">
-        <%@include file="jsp/weekly.jsp"%>
+        <%@include file="jsp/account/weekly.jsp"%>
     </article>
 
     <article class="tab-pane fade d-hidden ${listPane}" id="list">
-        <%@include file="jsp/shoppingList.jsp"%>
+        <%@include file="jsp/account/shoppingList.jsp"%>
     </article>
 
     <article class="tab-pane fade d-hidden ${settingsPane}" id="settings">
-        <%@include file="jsp/settings.jsp"%>
+        <%@include file="jsp/account/settings.jsp"%>
     </article>
 </main>
 </div>
