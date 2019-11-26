@@ -41,6 +41,8 @@ public class Users {
             user.setLastName(lastName[0]);
         if(email != null)
             user.setEmail(email[0]);
+        if(password == null)
+            password = args.get("newPassword1");
         if(password != null)
             user.setPassword(PasswordManager.hash(password[0]));
 
