@@ -12,7 +12,7 @@
     <label for="email">Email: </label>
     <input type="email" id="email" name="email"
            value="${sessionScope.user.email}" class="form-control"/>
-    <input type="submit" name="submit" value="Update" class="btn btn-primary form-control mt-1"/>
+    <input type="submit" name="submitType" value="Update" class="btn btn-primary form-control mt-1"/>
 </form>
 
 <form action="Account" method="post" class="form col-md-6">
@@ -23,6 +23,6 @@
     <input type="password" id="newPassword1" name="newPassword1" class="form-control">
     <label for="newPassword2">Re-Enter New Password</label>
     <input type="password" id="newPassword2" name="newPassword2" class="form-control">
-    <input type="submit" name="submit" value="Change Password" class="btn btn-primary form-control mt-1"/>
+    <input type="submit" name="submitType" value="Change Password" class="btn btn-primary form-control mt-1"/>
 </form>
 </div>
