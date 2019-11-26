@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!-- Nav Bar -->
 <nav class="navbar navbar-expand-sm bg-info navbar-dark row">
-    <a href="index.jsp" class="navbar-brand mr-auto"><h1>Inde Project</h1></a>
+    <a href="./" class="navbar-brand mr-auto"><h1>Inde Project</h1></a>
 
     <ul class="navbar-nav">
         <c:choose>
