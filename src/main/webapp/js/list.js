@@ -118,7 +118,6 @@ class Ingredient {
 
         let li = document.createElement("li");
         li.setAttribute("class", "list-group-item");
-        // TODO: add a remove from list button
 
         li.appendChild(amount);
         li.appendChild(code);
