@@ -8,6 +8,8 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
 
 public class LoginServlet extends HttpServlet {
 
@@ -16,11 +18,13 @@ public class LoginServlet extends HttpServlet {
     protected User getLoggedInUser(HttpServletRequest request) throws NotLoggedInException {
         //get updated user from database.
         GenericDao<User> dao = new GenericDao<>(User.class);
-        User user = dao.findByPropertyEqual("userName", request.getRemoteUser()).get(0);
+        List users = dao.findByPropertyEqual("userName", request.getRemoteUser());
 
         //make sure user exists
-        if(user == null)
+        if(users.isEmpty())
             throw new NotLoggedInException();
+
+        User user = (User)users.get(0);
 
         //add user to session
         HttpSession session = request.getSession();
@@ -29,14 +33,15 @@ public class LoginServlet extends HttpServlet {
         return user;
     }
 
-    protected void checkForLogin(HttpServletRequest request) {
+    protected User checkForLogin(HttpServletRequest request) {
         try
         {
-            getLoggedInUser(request);
+            return getLoggedInUser(request);
         }
         catch( NotLoggedInException e)
         {
-            //Do Nothing
+            return null;
         }
+
     }
 }
