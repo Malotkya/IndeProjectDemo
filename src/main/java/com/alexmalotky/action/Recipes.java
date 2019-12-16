@@ -26,7 +26,10 @@ public class Recipes {
 
         if(args != null) {
             name = args.get("recipeName")[0];
-            publicView = args.get("publicView")[0];
+            if(args.get("publicView") == null)
+                publicView = null;
+            else
+                publicView = args.get("publicView")[0];
             ingredients = args.get("ingredients")[0];
             directions = args.get("directions")[0];
         }
@@ -35,11 +38,11 @@ public class Recipes {
             recipe.setPublicView(false);
         else
             recipe.setPublicView(publicView.equals("on"));
-        if (name == null)
+        if (name != null)
             recipe.setName(name);
-        if (ingredients == null)
+        if (ingredients != null)
             recipe.setIngredients(ingredients);
-        if (directions == null)
+        if (directions != null)
             recipe.setDirections(directions);
 
         dao.saveOrUpdate(recipe);
