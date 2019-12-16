@@ -49,6 +49,7 @@ public class User {
         this.lastName = lastName;
         this.userName = userName;
         this.email = email;
+        this.password = password;
     }
 
     @Override
