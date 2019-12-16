@@ -2,6 +2,7 @@ use IndeProject;
 
 SET SQL_SAFE_UPDATES=0;
 delete from roles;
+delete from calendar;
 delete from favorites;
 delete from recipes;
 delete from users;
@@ -22,11 +23,13 @@ insert into recipes
 values(
 	1,
     "Test Recipe",
-	"[\"{\\\"item\\\":\\\"Ingredient 1\\\", \\\"amount\\\":\\\"20\\\", \\\"unit\\\":\\\"oz\\\"}\",\"{\\\"item\\\":\\\"Ingredient 2\\\", \\\"amount\\\":\\\"5\\\", \\\"unit\\\":\\\"lbs\\\"}\"]",
-	"[\"Instruction 1\", \"Instruction 2\"]",
+	"[{\"amount\":\"5\",\"unit\":\"g\",\"item\":\"Wet Ingredient\"},{\"amount\":\"2\",\"unit\":\"lbs\",\"item\":\"Dry Ingredient\"}]",
+    "[\"Instruction 1\", \"Instruction 2\"]",
 	true,
     1
 );
 
 insert into favorites
 values( 1, 1 );
+
+select * from recipes;
