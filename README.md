@@ -12,9 +12,6 @@ With this app you can save recipes, plan out meals, and create shopping lists fo
 [Project Flow](docs/flow.md)  
 [Project Plan](docs/plan.md)
 
-### Technologies
-* List of technologies that im using
-
 ### Weekly Logs
 [Time Log](timelog.md)  
 [Weekly Journal](docs/reflection.md)
@@ -24,3 +21,5 @@ With this app you can save recipes, plan out meals, and create shopping lists fo
 
 ### AWS
 ![AWS Screenshot](docs/images/aws.png)
+
+### [Ginger Bread Men](https://www.allrecipes.com/recipe/9329/gingerbread-men/?internalSource=streams&referringId=841&referringContentType=Recipe%20Hub&clickId=st_trending_b)
