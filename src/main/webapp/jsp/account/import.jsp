@@ -4,6 +4,6 @@
     recipe bellow.
 </p>
 <form action="Import" method="get">
-    <input type="text" name="url" />
-    <input type="submit" value="Import" />
+    <input type="text" name="url" class="form-control"/>
+    <input type="submit" value="Import" class="btn btn-info"/>
 </form>
