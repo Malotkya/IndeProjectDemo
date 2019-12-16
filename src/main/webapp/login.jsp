@@ -10,7 +10,6 @@
 <%@include file="jsp/header.jsp"%>
 <%@include file="jsp/topbar.jsp"%>
 <form class="form" id="loginModal" action="j_security_check" method="POST">
-    <!-- TODO: add validation -->
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -21,17 +20,18 @@
             <div class="modal-body">
                 <label for="username">Username:</label>
                 <input type="text" name="j_username" value="${username}"
-                       id="username" class="form-control"/>
+                       id="username" class="form-control not-null"/>
                 <label for="password">Password:</label>
                 <input type="password" name="j_password" value="${password}"
-                       id="password" class="form-control"/>
+                       id="password" class="form-control password not-null"/>
             </div>
 
             <div class="modal-footer">
-                <input type="submit" value="Login" class="btn btn-primary form-control" />
+                <input type="submit" value="Login" class="btn btn-primary form-control submit" />
             </div>
 
         </div>
     </div>
 </form>
+<script src="js/login.js"></script>
 <%@include file="jsp/footer.jsp"%>
