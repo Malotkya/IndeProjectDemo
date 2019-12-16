@@ -51,7 +51,7 @@ public class FavoriteKey implements Serializable {
     }
 
     public Map<String, Object> generateMap() {
-        Map map = new HashMap();
+        Map<String, Object> map = new HashMap();
 
         map.put("user", user);
         map.put("recipe", recipe);
