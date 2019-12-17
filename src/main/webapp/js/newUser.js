@@ -107,7 +107,7 @@ const checkEmail = async(event) => {
 
         if (text === "false") {
             input.querySelector("input").setAttribute("class", "form-control is-invalid");
-            input.querySelector("div").innerText = "Username is already taken";
+            input.querySelector("div").innerText = "Please enter a valid email";
         } else {
             input.querySelector("input").setAttribute("class", "form-control is-valid");
             input.querySelector("div").innerText = "";
